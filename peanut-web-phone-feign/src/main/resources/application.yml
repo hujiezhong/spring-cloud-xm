@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: peanut-web-phone-feign
+  thymeleaf:
+    encoding: UTF-8
+    prefix: classpath:/static/
+    suffix: .html
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///peanutmi
+    username: root
+    password: root
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+  mvc:
+    static-path-pattern: /**
+server:
+  port: 8084
+
+mybatis:
+  configuration:
+    auto-mapping-behavior: full
+    aggressive-lazy-loading: true   #懒加载
+    cache-enabled: true    #二级缓存
+  type-aliases-package: com.peanut.entity
+
+eureka:
+  client:
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+
+logging:
+  level:
+    com:
+      peanut:
+        dao: debug
+

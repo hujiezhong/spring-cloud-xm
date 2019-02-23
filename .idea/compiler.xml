@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="peanut-eureka" />
+        <module name="peanut-service-computer" />
+        <module name="peanut-service-parts" />
+        <module name="peanut-service-phone" />
+        <module name="peanut-share" />
+        <module name="peanut-web-computer-feign" />
+        <module name="peanut-web-phone-feign" />
+        <module name="peanut-zuul" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="peanut-dependencies" target="1.8" />
+      <module name="peanut-eureka" target="1.8" />
+      <module name="peanut-service-computer" target="1.8" />
+      <module name="peanut-service-parts" target="1.8" />
+      <module name="peanut-service-phone" target="1.8" />
+      <module name="peanut-service-phone2" target="1.8" />
+      <module name="peanut-share" target="1.8" />
+      <module name="peanut-web-computer-feign" target="1.8" />
+      <module name="peanut-web-computer-feign (1)" target="1.8" />
+      <module name="peanut-web-parts-feign" target="1.8" />
+      <module name="peanut-web-phone-feign" target="1.8" />
+      <module name="peanut-web-phone-feign (1)" target="1.8" />
+      <module name="peanut-zuul" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="peanut-eureka" options="-parameters" />
+      <module name="peanut-service-computer" options="-parameters" />
+      <module name="peanut-service-parts" options="-parameters" />
+      <module name="peanut-service-phone" options="-parameters" />
+      <module name="peanut-service-phone2" options="-parameters" />
+      <module name="peanut-share" options="-parameters" />
+      <module name="peanut-web-computer-feign" options="-parameters" />
+      <module name="peanut-web-computer-feign (1)" options="-parameters" />
+      <module name="peanut-web-parts-feign" options="-parameters" />
+      <module name="peanut-web-phone-feign" options="-parameters" />
+      <module name="peanut-web-phone-feign (1)" options="-parameters" />
+      <module name="peanut-zuul" options="-parameters" />
+    </option>
+  </component>
+</project>

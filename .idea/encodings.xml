@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/peanut-dependencies" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-service-computer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-service-parts" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-service-phone" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-share" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-web-computer-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-web-parts-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-web-parts-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-web-parts-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-web-parts-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-web-phone-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/peanut-zuul" charset="UTF-8" />
+  </component>
+</project>

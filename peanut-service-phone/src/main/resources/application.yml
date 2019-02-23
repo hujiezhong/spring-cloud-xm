@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: peanut-service-phone
+  thymeleaf:
+    encoding: UTF-8
+    prefix: classpath:/static/
+    suffix: .html
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///peanutmi
+    username: root
+    password: root
+  mvc:
+    static-path-pattern: /**
+
+server:
+  port: 8083
+
+mybatis:
+  configuration:
+    auto-mapping-behavior: full
+    aggressive-lazy-loading: true   #懒加载
+    cache-enabled: true    #二级缓存
+  type-aliases-package: com.peanut.entity
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
+
+logging:
+  level:
+    com:
+      peanut:
+        dao: debug

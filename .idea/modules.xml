@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/peanut-dependencies/peanut-dependencies.iml" filepath="$PROJECT_DIR$/peanut-dependencies/peanut-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-eureka/peanut-eureka.iml" filepath="$PROJECT_DIR$/peanut-eureka/peanut-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-service-computer/peanut-service-computer.iml" filepath="$PROJECT_DIR$/peanut-service-computer/peanut-service-computer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-service-parts/peanut-service-parts.iml" filepath="$PROJECT_DIR$/peanut-service-parts/peanut-service-parts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-service-phone/peanut-service-phone.iml" filepath="$PROJECT_DIR$/peanut-service-phone/peanut-service-phone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-share/peanut-share.iml" filepath="$PROJECT_DIR$/peanut-share/peanut-share.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-web-computer-feign/peanut-web-computer-feign.iml" filepath="$PROJECT_DIR$/peanut-web-computer-feign/peanut-web-computer-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-web-phone-feign/peanut-web-phone-feign.iml" filepath="$PROJECT_DIR$/peanut-web-phone-feign/peanut-web-phone-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peanut-zuul/peanut-zuul.iml" filepath="$PROJECT_DIR$/peanut-zuul/peanut-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-xm.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-xm.iml" />
+    </modules>
+  </component>
+</project>
