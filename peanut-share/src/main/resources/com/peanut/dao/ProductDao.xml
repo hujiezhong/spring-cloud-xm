@@ -17,6 +17,9 @@
         <association property="category" column="cid" javaType="Category">
             <id column="cid" property="cid"></id>
         </association>
+        <association property="rate" column="rateId" javaType="Rate">
+            <id column="rateId" property="rateId"></id>
+        </association>
     </resultMap>
 
     <select id="select" resultMap="ProductCid">
@@ -24,7 +27,12 @@
     </select>
 
     <select id="selectNav" resultMap="ProductCid" parameterType="int">
-        SELECT pid,pname,image,shopprice FROM product WHERE cid = #{cid} ORDER BY flag DESC LIMIT 0,5
+        SELECT * FROM product WHERE cid = #{cid} ORDER BY flag DESC LIMIT 0,#{size}
+    </select>
+
+    <select id="productByFuCid" resultMap="ProductCid" parameterType="int">
+        SELECT * FROM product a LEFT JOIN category b ON a.`cid` = b.cid
+        WHERE b.`parentId` = #{cid} ORDER BY a.`createTime` DESC LIMIT 0,#{size}
     </select>
 
 

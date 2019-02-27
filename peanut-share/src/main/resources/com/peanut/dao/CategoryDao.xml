@@ -29,5 +29,8 @@
         select * from Category where nav = 1
     </select>
 
+    <select id="selectParent" resultType="Category">
+        SELECT * FROM category WHERE parentId IS NULL
+    </select>
 
 </mapper>

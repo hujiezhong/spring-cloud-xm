@@ -10,4 +10,6 @@ public interface CategoryService {
 
     List<Category> listNav();
 
+    List<Category> selectParent();
+
 }

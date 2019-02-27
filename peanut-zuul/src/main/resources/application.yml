@@ -1,6 +1,12 @@
 spring:
   application:
     name: peanut-zuul
+  #redis:
+  #  host: 106.13.73.229
+  #  port: 6379
+  #  password:
+  #session:
+  #  store-type: redis
 
 server:
   port: 9090

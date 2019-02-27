@@ -48,10 +48,19 @@ public class PhoneController {
     }
 
     @RequestMapping("navProduct")
-    public List<Product> navProduct(@RequestParam Integer cid){
-        return ps.selectNav(cid);
+    public List<Product> navProduct(@RequestParam Integer cid, @RequestParam Integer size){
+        return ps.selectNav(cid, size);
     }
 
+    @RequestMapping("selectParent")
+    public List<Category> selectParent(){
+        List<Category> list = cs.selectParent();
+        return list;
+    }
 
+    @RequestMapping("productByFuCid")
+    public List<Product> productByFuCid(@RequestParam Integer cid, @RequestParam Integer size){
+        return ps.productByFuCid(cid, size);
+    }
 
 }

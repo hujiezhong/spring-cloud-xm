@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
+//@EnableRedisHttpSession
 @MapperScan(basePackages = "com.peanut.dao")
 public class ServicePhoneApplication {
 

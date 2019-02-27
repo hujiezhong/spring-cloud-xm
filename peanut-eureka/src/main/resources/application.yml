@@ -1,7 +1,6 @@
 spring:
   application:
     name: peanut-eureka
-
 server:
   port: 8081
 

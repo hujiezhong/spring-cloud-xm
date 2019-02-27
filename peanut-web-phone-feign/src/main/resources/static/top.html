@@ -35,7 +35,14 @@
                     type:'get',
                     success:function(data){
                         $("ul[ti=navCat]").empty();
+                        var myDate = new Date();
+                        var year = myDate.getFullYear();
+                        var month=myDate.getMonth()+1;
+                        var ri=myDate.getDate();
                         for(var i=0;i<data.length;i++){
+                            var now = new Date(year+"-"+month+"-"+ri);
+                            var now2 = new Date(data[0].createTime);
+                            var now3 = now - now2;
                             li += "<li class=\"first\">"
                             li += "<div class=\"figure figure-thumb\">";
                             li += "<a href=\"https://www.mi.com/mix3/\"><img src='http://localhost:8084"+data[i].image+"' alt=\""+data[i].pname+"\"   width=\"160\"\n" +
@@ -44,7 +51,9 @@
                             li += "<div class='title'><a href='https://www.mi.com/mix3/'>"+data[i].pname+"</a></div>";
                             li += "<p class='price'>"+data[i].shopPrice+"元起</p>";
                             li += "<div class=\"flags\">";
-                            li += "<div class=\"flag\">新品</div>";
+                            if(Math.floor(now3/(24*3600*1000)) < 90){
+                                li += "<div class=\"flag\">新品</div>";
+                            }
                             li += "</div>";
                             li += "</li>";
                         }

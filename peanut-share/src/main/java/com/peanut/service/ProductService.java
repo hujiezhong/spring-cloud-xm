@@ -8,6 +8,7 @@ public interface ProductService {
 
     List<Product> select();
 
-    List<Product> selectNav(Integer cid);
+    List<Product> selectNav(Integer cid, Integer size);
 
+    List<Product> productByFuCid(Integer cid, Integer size);
 }

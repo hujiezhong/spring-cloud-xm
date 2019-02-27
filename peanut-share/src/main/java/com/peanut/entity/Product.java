@@ -1,12 +1,10 @@
 package com.peanut.entity;
 
 
-import com.peanut.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 商品表
@@ -23,6 +21,7 @@ public class Product implements Serializable {
     private String description; //详情
     private int flag;        //状态 1:有货  0：没货  还不是很清楚干嘛用  卖出多少 销量
     private int inventory;   //库存
+
     private Date createTime; //上架时间
     private int postage;     //是否包邮  1：是 0：不是
 
@@ -106,6 +105,7 @@ public class Product implements Serializable {
         this.inventory = inventory;
     }
 
+    @JSONField(format="yyyy-MM-dd")
     public Date getCreateTime() {
         return createTime;
     }
@@ -122,10 +122,4 @@ public class Product implements Serializable {
         this.postage = postage;
     }
 
-    @Autowired
-    private ProductService ps;
-
-    public List<Product> selectByCid(Integer cid){
-        return ps.selectNav(cid);
-    }
 }

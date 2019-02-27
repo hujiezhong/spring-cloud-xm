@@ -37,22 +37,51 @@
 					type:'get',
 					success:function(data){
 						$(".navList").empty();
+						var myDate = new Date();
+						var year = myDate.getFullYear();
+						var month=myDate.getMonth()+1;
+						var ri=myDate.getDate();
 						for(var i=0;i<data.length;i++){
-							li += "<li>"
-							li += "<label>新品</label>";
+							li += "<li>";
+							var now = new Date(year+"-"+month+"-"+ri);
+							var now2 = new Date(data[0].createTime);
+							var now3 = now - now2;
+							if(Math.floor(now3/(24*3600*1000)) < 90){
+								li += "<label>新品</label>";
+							}
 							li += "<a href='#' class='nav_item_con_img'>";
-							li += "<img width='50' height='100' data-src='http://localhost:8084"+data[i].image+"' /> </a>";
+							li += "<img width='46' height='100' src='http://localhost:8084"+data[i].image+"' /> </a>";
 							li += "<a href='#' class='nav_item_con_name'>"+data[i].pname+"</a>";
-							li += "<p>"+data[i].shopPrice+"元起</p>"
+							li += "<p>"+data[i].shopPrice+"元起</p>";
 							li += "</li>";
 						}
 						$(".navList").append(li);
-					}/*,
-					error:function(XMLHttpRequest, textStatus, errorThrown) {
-						alert(XMLHttpRequest.status);
-						alert(XMLHttpRequest.readyState);
-						alert(textStatus);
-					}*/
+					}
+				});
+			});
+
+			$(".productByCid").mouseover(function () {
+				var cid = $(this).attr("cid");
+				var li = "";
+				$.ajax({
+					url:"http://localhost:8084/api/a/productByCid?cid="+cid,
+					dataType:'jsonp',
+					processData: false,
+					jsonp: "callback",
+					type:'get',
+					success:function(data){
+						$("ul[ti=didi]").empty();
+						var li = "";
+						for(var i=0;i<data.length;i++){
+							li += "<li>";
+							li += "<a href=\"#\">";
+							li += "<img src='http://localhost:8084"+data[i].image+"'>";
+							li += "<span>"+(data[i].pname.length > 8) ? data[i].pname.substr(0,8)+'...' : data[i].pname+"</span>";
+							li += "</a>"
+							li += "</li>";
+						}
+						$("ul[ti=didi]").append(li);
+					}
 				});
 			});
 		})
@@ -147,7 +176,7 @@
 						</ul>
 					</div>
 					<!-- 下拉列表内容 -->
-					<div class="datalist">
+					<div class="datalist" style="right: 47px;width:224px " >
 						<ul>
 							<li><a href="#">小米6X<span>约有6件</span></a></li>
 							<li><a href="#">小米MIX 2S<span>约有5件</span></a></li>
@@ -169,337 +198,15 @@
 			<!-- 定义菜单 -->
 			<div class="menu_list">
 				<ul>
-					<li><a href="#">手机 电话卡<span class="arrow">&gt;</span></a>
+
+					<li class="productByCid" th:each="p:${partentList}" th:attr="cid=${p.getCid()}"><a href="#"><span th:text="${p.getCname()}">手机 电话卡</span><span class="arrow">&gt;</span></a>
 						<div class="menu_list_item">
-							<ul class="menu_list_goods menu_col_4">
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
+							<ul ti="didi" class="menu_list_goods menu_col_4">
+
 							</ul>
 						</div>
 					</li>
-					<li><a href="#">电视 盒子<span class="arrow">&gt;</span></a>
-						<div class="menu_list_item">
-							<ul class="menu_list_goods menu_col_3">
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li><a href="#">笔记本 平板<span class="arrow">&gt;</span></a>
-						<div class="menu_list_item">
-							<ul class="menu_list_goods menu_col_2">
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="http://localhost:8084/static/images/note3-80-2.png" alt="">
-										<span>小米Note 3</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li><a href="#">家电 插线板<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">出行 穿戴<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">智能 路由器<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">电源 配件<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">个护 儿童<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">耳机 音箱<span class="arrow">&gt;</span></a></li>
-					<li><a href="#">生活 箱包<span class="arrow">&gt;</span></a></li>
+
 				</ul>
 			</div>
 			<!-- 定义banner -->
@@ -674,74 +381,19 @@
 					<a href="#"><img src="http://localhost:8084/static/images/xmad_15323220713837_GLBVX.jpg"/></a>
 				</div>
 				<div class="goods_item_right">
-					<div class="goods_item_list">
+
+					<div class="goods_item_list" th:each="phone:${phone}">
 						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
+							<label>新品</label>
+							<a href="#"><img th:src="@{'http://localhost:8084'+${phone.image}}" alt=""></a>
+							<p class="good_title"><a href="#" th:text="${phone.pname}">小米8 SE 4GB+64GB</a></p>
+							<p class="good_desc"
+							   th:text="${#strings.length(phone.description) > 20 ?
+							   			#strings.substring(phone.description,0,20)+'..':phone.description}" >AI 超感光双摄，三星 AMOLED 屏幕</p>
+							<p class="good_price" th:text="${phone.shopPrice}">1799元</p>
 						</div>
 					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<label>减 200 元</label>
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<label>享7折</label>
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<label>享8折</label>
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<label>减 100 元</label>
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#">小米8 SE 4GB+64GB</a></p>
-							<p class="good_desc">AI 超感光双摄，三星 AMOLED 屏幕</p>
-							<p class="good_price">1799元</p>
-						</div>
-					</div>
+
 				</div>
 			</div>
 			<!-- 手机 end -->
@@ -754,340 +406,34 @@
 
 			<!-- 家电 start -->
 			<div class="wiring con_width clearfix">
-				<h1 class="list_title" id="houseElectricalTitle">家电
-					<ul>
+				<h1 class="list_title" id="houseElectricalTitle">电脑
+					<!--<ul>
 						<li class="active"><a href="#">热门</a></li>
 						<li><a href="#">电视影音</a></li>
 						<li><a href="#">电脑</a></li>
 						<li><a href="#">家居</a></li>
-					</ul>
+					</ul>-->
 				</h1>
 				<div class="wiring_left">
 					<a href="#"><img src="http://localhost:8084/static/images/xmad_15232550390498_qwxEC.jpg"/></a>
 					<a href="#"><img src="http://localhost:8084/static/images/xmad_15232550390498_qwxEC.jpg"/></a>
 				</div>
 				<div class="wiring_right" id="houseElectricalDiv">
-					<!-- 热门 -->
-					<div class="wiring_right_con">
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>享8折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">热门小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">热门小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>享7折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">热门小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">热门小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">热门小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">热门小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">热门小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						
-						<div class="goods_item_list_last">
-							<div class="goods_item_last_list clearfix">
-								<div class="goods_item_last_list_left">
-									<a href="#">小米盒子3s</a>
-									<span>299元</span>
-								</div>
-								<div class="goods_item_last_list_right">
-									<img src="http://localhost:8084/static/images/pms_1479190789.95594557!220x220.jpg" />
-								</div>
-							</div>
-							<div class="goods_item_last_list clearfix">
-								<div class="goods_item_last_list_left">
-									<a href="#" class="more">
-										<p>浏览更多</p>
-										<label>热门</label>
-									</a>
-								</div>
-								<div class="goods_item_last_list_right">
-									<a href="#"><i class="iconfont icon-you"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>	
-					<!-- 电视影音 -->
-					<div class="wiring_right_con hide">
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>享8折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">电视影音</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>享7折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">电视影音小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">电视影音小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						
-						<div class="goods_item_list_last">
-							<div class="goods_item_last_list clearfix">
-								<div class="goods_item_last_list_left">
-									<a href="#">小米盒子3s</a>
-									<span>299元</span>
-								</div>
-								<div class="goods_item_last_list_right">
-									<img src="http://localhost:8084/static/images/pms_1479190789.95594557!220x220.jpg" />
-								</div>
-							</div>
-							<div class="goods_item_last_list clearfix">
-								<div class="goods_item_last_list_left">
-									<a href="#" class="more">
-										<p>浏览更多</p>
-										<label>电视影音</label>
-									</a>
-								</div>
-								<div class="goods_item_last_list_right">
-									<a href="#"><i class="iconfont icon-you"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>	
+
 					<!-- 电脑 -->
-					<div class="wiring_right_con hide">
-						<div class="goods_item_list">
+					<div class="wiring_right_con">
+
+						<div class="goods_item_list" th:each="computer:${computer}">
 							<div class="goodlist_content">
-								<label>享8折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">电脑</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>享7折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">电脑小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">电脑小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">电脑小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
+								<a href="#"><img th:src="@{'http://localhost:8084'+${computer.image}}" alt=""></a>
+								<p class="good_title"><a href="#" th:text="${computer.pname}">电脑</a></p>
+								<p class="good_desc"
+								   th:text="${#strings.length(computer.description) > 20 ?
+							   			#strings.substring(computer.description,0,20)+'..':computer.description}">4K超高清屏 / 真四核64位高性能处理器</p>
+								<p class="good_price">
+									<span th:text="${computer.shopPrice}">3699元</span>
+									<label th:text="${computer.yuanPrice > computer.shopPrice ? computer.yuanPrice : ''}">4499元</label>
+								</p>
 							</div>
 							<div class="goods_item_list_desc">
 								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
@@ -1096,16 +442,8 @@
 						</div>
 						
 						<div class="goods_item_list_last">
-							<div class="goods_item_last_list clearfix">
-								<div class="goods_item_last_list_left">
-									<a href="#">小米盒子3s</a>
-									<span>299元</span>
-								</div>
-								<div class="goods_item_last_list_right">
-									<img src="http://localhost:8084/static/images/pms_1479190789.95594557!220x220.jpg" />
-								</div>
-							</div>
-							<div class="goods_item_last_list clearfix">
+
+							<div class="goods_item_last_list clearfix" >
 								<div class="goods_item_last_list_left">
 									<a href="#" class="more">
 										<p>浏览更多</p>
@@ -1116,127 +454,10 @@
 									<a href="#"><i class="iconfont icon-you"></i></a>
 								</div>
 							</div>
+
 						</div>
 					</div>	
-					<!-- 家居 -->
-					<div class="wiring_right_con hide">
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>享8折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">家居</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">家居小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>享7折</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">家居小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label>减 200 元</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						<div class="goods_item_list">
-							<div class="goodlist_content">
-								<label class="new_good">新品</label>
-								<a href="#"><img src="http://localhost:8084/static/images/pms_1490077569.08131612!220x220.png" alt=""></a>
-								<p class="good_title"><a href="#">家居小米电视4A 65英寸</a></p>
-								<p class="good_desc">4K超高清屏 / 真四核64位高性能处理器</p>
-								<p class="good_price">3699元<label>4499元</label></p>
-							</div>
-							<div class="goods_item_list_desc">
-								<p class="goods_item_list_desc_con">小米电视给我惊喜，昨天下午下单，第二天上午就送到家啦...</p>
-								<span> 来自于 陈金壮 的评价</span>
-							</div>
-						</div>
-						
-						<div class="goods_item_list_last">
-							<div class="goods_item_last_list clearfix">
-								<div class="goods_item_last_list_left">
-									<a href="#">小米盒子3s</a>
-									<span>299元</span>
-								</div>
-								<div class="goods_item_last_list_right">
-									<img src="http://localhost:8084/static/images/pms_1479190789.95594557!220x220.jpg" />
-								</div>
-							</div>
-							<div class="goods_item_last_list clearfix">
-								<div class="goods_item_last_list_left">
-									<a href="#" class="more">
-										<p>浏览更多</p>
-										<label>家居</label>
-									</a>
-								</div>
-								<div class="goods_item_last_list_right">
-									<a href="#"><i class="iconfont icon-you"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>					
-					
-				</div>
+
 			</div>
 			<!-- 家电 end -->
 
@@ -1248,245 +469,43 @@
 
 			<!-- 智能 start -->
 			<div class="wiring con_width clearfix">
-				<h1 class="list_title">家电
-					<ul>
+				<h1 class="list_title">配件
+					<!--<ul>
 						<li class="active"><a href="#">热门</a></li>
 						<li><a href="#">出行</a></li>
 						<li><a href="#">健康</a></li>
 						<li><a href="#">酷玩</a></li>
 						<li><a href="#">路由器</a></li>
-					</ul>
+					</ul>-->
 				</h1>
 				<div class="wiring_left">
 					<a href="#"><img src="http://localhost:8084/static/images/xmad_15266395374048_JnZQo.jpg"/></a>
 					<a href="#"><img src="http://localhost:8084/static/images/xmad_15266395374048_JnZQo.jpg"/></a>
 				</div>
 				<div class="wiring_right">
-					<div class="goods_item_list">
+
+					<div class="goods_item_list" th:each="parts:${parts}">
 						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
+							<a href="#"><img th:src="@{'http://localhost:8084'+${parts.image}}" alt=""></a>
+							<p class="good_title"><a href="#" th:text="${parts.pname}">米家飞利浦智睿台灯二代</a></p>
+							<p class="good_desc" th:text="${#strings.length(parts.description) > 20 ?
+							   			#strings.substring(parts.description,0,20)+'..':parts.description}">感知环境光，主动优化场景照明</p>
+							<p class="good_price" th:text="${parts.shopPrice + '元'}">199</p>
 						</div>
 						<div class="goods_item_list_desc">
 							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
 							<span>来自于 上网辛苦了 的评价 </span>
 						</div>
 					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
+
 					
 					<div class="goods_item_list_last">
 						<div class="goods_item_last_list clearfix">
 							<div class="goods_item_last_list_left">
-								<a href="#">小米VR眼镜</a>
-								<span>299元</span>
-							</div>
-							<div class="goods_item_last_list_right">
-								<img src="http://localhost:8084/static/images/pms_1477985364.89714934!220x220.jpg" />
-							</div>
-						</div>
-						<div class="goods_item_last_list clearfix">
-							<div class="goods_item_last_list_left">
-								<a href="#" class="more">
-									<p>浏览更多</p>
-									<label>热门</label>
-								</a>
-							</div>
-							<div class="goods_item_last_list_right">
-								<a href="#"><i class="iconfont icon-you"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 智能 end -->
 
-			<!-- 广告 start -->
-			<div class="ad_container con_width">
-				<a href="#" alt="小米电视" title="小米电视"><img src="http://localhost:8084/static/images/xmad_15330597618059_zrRgh.jpg"></a>
-			</div>
-			<!-- 广告 end -->
-
-			<!-- 搭配 start -->
-			<div class="wiring con_width clearfix">
-				<h1 class="list_title">搭配
-					<ul>
-						<li class="active"><a href="#">热门</a></li>
-						<li><a href="#">耳机音箱</a></li>
-						<li><a href="#">电源</a></li>
-						<li><a href="#">电池存储卡</a></li>
-					</ul>
-				</h1>
-				<div class="wiring_left">
-					<a href="#"><img src="http://localhost:8084/static/images/xmad_15266395374048_JnZQo.jpg"/></a>
-					<a href="#"><img src="http://localhost:8084/static/images/xmad_15266395374048_JnZQo.jpg"/></a>
-				</div>
-				<div class="wiring_right">
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/cf6660a3-d424-4248-889f-0eed1e99a342.png" alt=""></a>
-							<p class="good_title"><a href="#">米家飞利浦智睿台灯二代</a></p>
-							<p class="good_desc">感知环境光，主动优化场景照明</p>
-							<p class="good_price">199</p>
-						</div>
-						<div class="goods_item_list_desc">
-							<p class="goods_item_list_desc_con">一流的服务、一流的设备、一流的技术、一流的设施、星级...</p>
-							<span>来自于 上网辛苦了 的评价 </span>
-						</div>
-					</div>
-					
-					<div class="goods_item_list_last">
-						<div class="goods_item_last_list clearfix">
-							<div class="goods_item_last_list_left">
-								<a href="#">小米VR眼镜</a>
-								<span>299元</span>
 							</div>
 							<div class="goods_item_last_list_right">
-								<img src="http://localhost:8084/static/images/pms_1477985364.89714934!220x220.jpg" />
+
 							</div>
 						</div>
 						<div class="goods_item_last_list clearfix">

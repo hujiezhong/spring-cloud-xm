@@ -25,6 +25,12 @@ public interface WebPhoneService {
     public List<Category> navCategory();
 
     @RequestMapping("navProduct")
-    public List<Product> navProduct(@RequestParam Integer cid);
+    public List<Product> navProduct(@RequestParam Integer cid, @RequestParam Integer size);
+
+    @RequestMapping("selectParent")
+    public List<Category> selectParent();
+
+    @RequestMapping("productByFuCid")
+    public List<Product> productByFuCid(@RequestParam Integer cid, @RequestParam Integer size);
 
 }

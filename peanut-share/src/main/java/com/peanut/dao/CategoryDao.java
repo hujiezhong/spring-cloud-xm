@@ -12,4 +12,6 @@ public interface CategoryDao {
 
     List<Category> listNav();
 
+    List<Category> selectParent();
+
 }

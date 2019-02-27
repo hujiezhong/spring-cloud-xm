@@ -26,4 +26,9 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> listNav() {
         return cd.listNav();
     }
+
+    @Override
+    public List<Category> selectParent() {
+        return cd.selectParent();
+    }
 }

@@ -17,6 +17,8 @@ spring:
         enabled: true
   mvc:
     static-path-pattern: /**
+
+
 server:
   port: 8084
 
@@ -42,4 +44,3 @@ logging:
     com:
       peanut:
         dao: debug
-

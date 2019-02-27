@@ -19,7 +19,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> selectNav(Integer cid) {
-        return pd.selectNav(cid);
+    public List<Product> selectNav(Integer cid, Integer size) {
+        return pd.selectNav(cid, size);
+    }
+
+    @Override
+    public List<Product> productByFuCid(Integer cid, Integer size) {
+        return pd.productByFuCid(cid, size);
     }
 }
