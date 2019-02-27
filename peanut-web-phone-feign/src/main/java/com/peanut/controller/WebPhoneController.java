@@ -35,11 +35,12 @@ public class WebPhoneController {
     @RequestMapping("/api/a/index2")
     public String index(HttpSession session,Model mod) {
         System.out.println(session.getId());
-        session.setAttribute("navCategory", wps.navCategory());               // 头部nav分类展示
-        mod.addAttribute("partentList",wps.selectParent());                 //列表夫分类
-        mod.addAttribute("phone",wps.productByFuCid(1,8));      //查询8个手机
-        mod.addAttribute("computer",wps.productByFuCid(2,7)); //查询电脑
-        mod.addAttribute("parts",wps.productByFuCid(3,7));  //查询配件
+        session.setAttribute("navCategory", wps.navCategory());                // 头部nav分类展示
+        mod.addAttribute("partentList",wps.selectParent());                    //列表夫分类
+        mod.addAttribute("phone",wps.productByFuCid(1,8));          //查询8个手机
+        mod.addAttribute("computer",wps.productByFuCid(2,7));       //查询电脑
+        mod.addAttribute("parts",wps.productByFuCid(3,7));          //查询配件
+        mod.addAttribute("tuiJian",wps.navProduct(0,5));            //查询推荐，销量最高
         return wps.index();
     }
 

@@ -27,7 +27,13 @@
     </select>
 
     <select id="selectNav" resultMap="ProductCid" parameterType="int">
-        SELECT * FROM product WHERE cid = #{cid} ORDER BY flag DESC LIMIT 0,#{size}
+        SELECT * FROM product
+        <where>
+            <if test="cid != 0">
+                cid = #{cid}
+            </if>
+        </where>
+        ORDER BY flag DESC LIMIT 0,#{size}
     </select>
 
     <select id="productByFuCid" resultMap="ProductCid" parameterType="int">

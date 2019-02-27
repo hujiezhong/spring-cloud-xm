@@ -440,7 +440,7 @@
 								<span> 来自于 陈金壮 的评价</span>
 							</div>
 						</div>
-						//本伟文某
+
 						<div class="goods_item_list_last">
 							<div class="goods_item_last_list clearfix">
 								<div class="goods_item_last_list_left">
@@ -542,46 +542,15 @@
 			<div class="recommends con_width clearfix">
 				<h1 class="list_title">为你推荐</h1>
 				<div class="recommends_con">
-					<div class="goods_item_list">
+
+					<div class="goods_item_list" th:each="tj:${tuiJian}">
 						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#"> 红米5 移动4G+版 2GB内存 </a></p>
-							<p class="good_price">799元</p>
-							<p class="good_desc">96人好评</p>
+							<a href="#"><img th:src="@{'http://localhost:8084'+${tj.image}}" alt=""></a>
+							<p class="good_title"><a href="#" th:text="${tj.pname}"> 红米5 移动4G+版 2GB内存 </a></p>
+							<p class="good_price" th:text="${tj.shopPrice}">799元</p>
 						</div>
 					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#"> 红米5 移动4G+版 2GB内存 </a></p>
-							<p class="good_price">799元</p>
-							<p class="good_desc">96人好评</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#"> 红米5 移动4G+版 2GB内存 </a></p>
-							<p class="good_price">799元</p>
-							<p class="good_desc">96人好评</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#"> 红米5 移动4G+版 2GB内存 </a></p>
-							<p class="good_price">799元</p>
-							<p class="good_desc">96人好评</p>
-						</div>
-					</div>
-					<div class="goods_item_list">
-						<div class="goodlist_content">
-							<a href="#"><img src="http://localhost:8084/static/images/pms_1527684990.93616987!220x220.jpg" alt=""></a>
-							<p class="good_title"><a href="#"> 红米5 移动4G+版 2GB内存 </a></p>
-							<p class="good_price">799元</p>
-							<p class="good_desc">96人好评</p>
-						</div>
-					</div>
+
 				</div>
 			</div>
 			<!-- 为你推荐 end -->
