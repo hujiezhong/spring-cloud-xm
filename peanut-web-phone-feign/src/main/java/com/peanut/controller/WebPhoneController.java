@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.netflix.client.http.HttpResponse;
 import com.peanut.entity.Category;
 import com.peanut.entity.Product;
+import com.peanut.entity.User;
 import com.peanut.service.WebPhoneService;
+import com.peanut.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +23,11 @@ public class WebPhoneController {
     @Autowired
     private WebPhoneService wps;
 
+    @Autowired
+    private RedisUtil redis;
+
     @RequestMapping("/api/a/list2")
-    public String list(Model mod,HttpSession session) {
-        System.out.println(session.getId());
+    public String list(Model mod) {
         List<Category> list = wps.list();
         List<Product> list2 = wps.listProduct();
         mod.addAttribute("list", list);
@@ -33,9 +37,8 @@ public class WebPhoneController {
     }
 
     @RequestMapping("/api/a/index2")
-    public String index(HttpSession session,Model mod) {
-        System.out.println(session.getId());
-        session.setAttribute("navCategory", wps.navCategory());                // 头部nav分类展示
+    public String index(Model mod) {
+        mod.addAttribute("navCategory", wps.navCategory());                // 头部nav分类展示
         mod.addAttribute("partentList",wps.selectParent());                    //列表夫分类
         mod.addAttribute("phone",wps.productByFuCid(1,8));          //查询8个手机
         mod.addAttribute("computer",wps.productByFuCid(2,7));       //查询电脑
@@ -53,10 +56,17 @@ public class WebPhoneController {
         return json;
     }
 
-    @RequestMapping("/api/a/productByCid")
+    @RequestMapping("/api/a/productByCid")      //菜单查询夫分类下的24个商品
     @ResponseBody
     public String ajaxProductByFuCid(Integer cid, String callback){
         return callback + "(" + JSON.toJSONString(wps.productByFuCid(cid,24)) + ")";
+    }
+
+    @RequestMapping("/api/a/ajaxCommentByPidOne")
+    @ResponseBody
+    public String ajaxCommentByPidOne(@RequestParam Integer pid, String callback){
+        String json = JSON.toJSONString(wps.comment(pid, 1, 1));
+        return callback + "(" + json + ")";  //查询该商品下的 一条好评
     }
 
 

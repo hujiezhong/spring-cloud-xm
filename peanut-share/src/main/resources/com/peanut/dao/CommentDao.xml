@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peanut.dao.CommentDao">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache">
+        <property name="timeToIdleSeconds" value="20"></property><!--<!–当缓存闲置60秒后销毁–>-->
+        <property name="timeToLiveSeconds" value="120"></property><!--<!–缓存存在160秒后销毁–>-->
+        <property name="maxEntriesLocalHeap" value="1000"></property>
+        <property name="maxEntriesLocalDisk" value="10000000"></property>
+        <property name="memoryStoreEvictionPolicy" value="LRU"></property>
+    </cache>
+
+    <resultMap id="Comment" type="Comment">
+        <id property="coId" column="coId"></id>
+        <association property="product" column="pid" javaType="Product">
+            <id column="pid" property="pid"></id>
+        </association>
+        <association property="user" column="uid" javaType="User">
+            <id column="uid" property="uid"></id>
+        </association>
+    </resultMap>
+
+    <select id="comment" parameterType="int" resultMap="Comment">
+        SELECT * FROM COMMENT a LEFT JOIN USER b ON a.uid=b.uid
+        <where>
+          <if test="pid != 0">
+              pid = #{pid}
+          </if>
+          <if test="goodorbad != 0">
+              and goodorbad = #{goodorbad}
+          </if>
+        </where>
+        <if test="size != 0">
+            LIMIT 0,#{size}
+        </if>
+
+    </select>
+
+</mapper>

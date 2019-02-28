@@ -1,8 +1,11 @@
 package com.peanut.controller;
 
+import com.netflix.discovery.converters.Auto;
 import com.peanut.entity.Category;
+import com.peanut.entity.Comment;
 import com.peanut.entity.Product;
 import com.peanut.service.CategoryService;
+import com.peanut.service.CommentService;
 import com.peanut.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +24,9 @@ public class PhoneController {
 
     @Autowired
     private ProductService ps;
+
+    @Autowired
+    private CommentService commentService;
 
     @Value("${server.port}")
     private String po;
@@ -61,6 +67,11 @@ public class PhoneController {
     @RequestMapping("productByFuCid")
     public List<Product> productByFuCid(@RequestParam Integer cid, @RequestParam Integer size){
         return ps.productByFuCid(cid, size);
+    }
+
+    @RequestMapping("comment")   //查询评论 pid：商品 goodorbad：好坏评  size：查询多少 0为查询所有 或是 没有条件
+    public List<Comment> comment(@RequestParam Integer pid, @RequestParam Integer goodorbad, @RequestParam Integer size){
+        return commentService.comment(pid,goodorbad,size);
     }
 
 }

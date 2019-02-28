@@ -1,6 +1,7 @@
 package com.peanut.service;
 
 import com.peanut.entity.Category;
+import com.peanut.entity.Comment;
 import com.peanut.entity.Product;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
@@ -55,6 +56,11 @@ public class WebPhoneServiceHystrix implements FallbackFactory<WebPhoneService> 
 
             @Override
             public List<Product> productByFuCid(Integer cid, Integer size) {
+                return null;
+            }
+
+            @Override
+            public List<Comment> comment(Integer pid, Integer goodorbad, Integer size) {
                 return null;
             }
         };

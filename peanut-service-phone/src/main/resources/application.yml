@@ -13,6 +13,10 @@ spring:
     password: root
   mvc:
     static-path-pattern: /**
+  redis:
+    host: 106.13.73.229
+    port: 6379
+    password:
 
 server:
   port: 8083
