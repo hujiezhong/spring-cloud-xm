@@ -11,6 +11,11 @@
       <module fileurl="file://$PROJECT_DIR$/peanut-web-computer-feign/peanut-web-computer-feign.iml" filepath="$PROJECT_DIR$/peanut-web-computer-feign/peanut-web-computer-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/peanut-web-phone-feign/peanut-web-phone-feign.iml" filepath="$PROJECT_DIR$/peanut-web-phone-feign/peanut-web-phone-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/peanut-zuul/peanut-zuul.iml" filepath="$PROJECT_DIR$/peanut-zuul/peanut-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm-common/pm-common.iml" filepath="$PROJECT_DIR$/pm-common/pm-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm-item/pm-item.iml" filepath="$PROJECT_DIR$/pm-item/pm-item.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm-item/pm-item-interface/pm-item-interface.iml" filepath="$PROJECT_DIR$/pm-item/pm-item-interface/pm-item-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm-item/pm-item-service/pm-item-service.iml" filepath="$PROJECT_DIR$/pm-item/pm-item-service/pm-item-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pm-page/pm-page.iml" filepath="$PROJECT_DIR$/pm-page/pm-page.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-xm.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-xm.iml" />
     </modules>
   </component>

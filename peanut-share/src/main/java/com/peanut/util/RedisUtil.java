@@ -16,6 +16,7 @@ public class RedisUtil {
     @Autowired
     RedisTemplate redisTemplate;
 
+
     public void init(){
         System.out.println(redisTemplate);
         System.out.println(redisTemplate.getValueSerializer());
@@ -50,7 +51,7 @@ public class RedisUtil {
         boolean result = false;
         try {
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-            operations.set(key, value);
+            operations.set(key, value, expireTime);
             redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
@@ -191,5 +192,34 @@ public class RedisUtil {
         ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
         return zset.rangeByScore(key, scoure, scoure1);
     }
+
+   /* *
+     * 登陆用户存入
+     * @param user
+     * @return
+    public User login(User user){
+        List<User> users = (List<User>) get("users");   //登陆了的用户
+        boolean bool = false;   //默认没有
+        if(users != null){
+            for(User u : users){
+                if(u.getUid() == user.getUid()){
+                    //同一个 替换掉redis 用户集合中的
+                    bool = true;
+                    users.remove(u);
+                    users.add(user);
+                    break;
+                }
+            }
+        }else{
+            users = new ArrayList<>();
+        }
+        System.out.println(bool);
+        if(bool == false){
+            //其他人登陆 了
+            users.add(user);
+        }
+        set("users",users);   //重新传入redis
+        return user;    //将刚刚登陆的对象返回
+    }*/
 
 }

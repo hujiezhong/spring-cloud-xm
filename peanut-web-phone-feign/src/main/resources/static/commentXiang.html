@@ -1,0 +1,105 @@
+<html class="root61 jd_retina" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script type="text/javascript" async=""
+            src="//a.stat.xiaomi.com/js/mstr.js?mid=Man20b6MPqTocfIbB8cl6g%3D%3D&amp;device_id=&amp;phpsessid=&amp;mstuid=1546833118983_1605&amp;muuid=1546833118888_2635&amp;mucid=&amp;sessionId=1739641161&amp;step=26&amp;new_visitor=0&amp;mstprevpid=&amp;mstprev_pid_loc=&amp;prevtarget=&amp;lastsource=account.xiaomi.com&amp;timestamp=1552706300202&amp;ref=https%3A%2F%2Fitem.mi.com%2Fcomment%2F10000134.html&amp;domain=.mi.com&amp;screen=1920*1080&amp;language=zh-CN&amp;vendor=Google Inc.&amp;platform=Win32&amp;gu=https%253A%252F%252Fwww.mi.com%252Fmi9%252F&amp;miwd=&amp;edm_task=&amp;masid=17489.0001&amp;client_id=180100041086&amp;pu=https%3A%2F%2Fitem.mi.com%2Fcomment%2F10000134.html&amp;rf=0&amp;mutid=&amp;muwd=&amp;domain_id=100&amp;pageid=e1830aa1492fb981&amp;curl=https%3A%2F%2Fitem.mi.com%2Fcomment%2Fdetail%3Fcomment_id%3D158972438&amp;xmv=1546833118983_1605_1552706187571&amp;v=1.0.0&amp;vuuid=473LLDFARTS4B0BE"></script>
+    <script type="text/javascript" async="" src="//s1.mi.com/stat/18/jquery.statData.min.js?d=2019316"></script>
+    <script type="text/javascript" async="" src="//s1.mi.com/stat/18/xmst.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>小米9 全网通版 8GB内存 全息幻彩紫的商品评价-小米商城</title>
+    <meta name="viewport" content="width=1226">
+    <meta name="keywords" content="小米手机,小米手机官网">
+    <link rel="shortcut icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//s01.mifile.cn/css/base.min.css?v201903011d">
+    <link rel="stylesheet" type="text/css" href="//s01.mifile.cn/css/comment/detail.min.css?_v=20190114">
+
+    <script type="text/javascript">var _head_over_time = (new Date()).getTime();</script>
+    <script src="https://account.xiaomi.com/pass/userInfoJsonP?userId=0&amp;callback=setLoginInfo_getAccountInfo"
+            type="text/javascript" async=""></script>
+</head>
+<body>
+<div class="comment-detail-box">
+    <div class="container J_commentDetail">
+        <div class="row">
+            <div class="span13 comment-detail">
+                <ul class="m-comment-list">
+                    <li class="com-item J_resetImgCon J_canZoomBox" data-id="158972438"><a class="user-img"
+                                                                                           href="/comment/user?user_id=168074779">
+                        <img th:src="@{'http://localhost:8084'+${comment.getUser().getTouXiangPath()}}">
+                    </a>
+                        <div class="comment-info"><a class="user-name" href="/comment/user?user_id=168074779" th:text="${comment.getUser().getUsername()}" >沈鹤立</a>
+                            <p class="time" th:text="${comment.getCoCreateTime()}">星期一</p></div>
+                        <div class="comment-eval"><i class="iconfont"></i> <v th:text="${comment.getGoodorbad()==1?'超爱':'失望'}">超爱</v></div>
+                        <div class="comment-txt"><p th:text="${comment.getCoContent()}">拍照不错，手感也好，决定不戴套裸奔 </p></div>
+                        <div class="m-img-list clearfix h-img-list">
+
+                            <div th:each="tu:${comment.getCommentImages()}" th:if="${tu.getCiFileName() != null}" class="img-item img-item1  showimg"><img
+                                    width="240" height="160"
+                                    class="J_resetImgItem J_canZoom" data-index="0"
+                                    th:src="@{'http://localhost:8084'+${tu.getCiFileName()}}"
+                                    style="height: 160px; margin-left: -62.0959px;">
+                                <div class="loader loader-gray"></div>
+                            </div>
+
+                            <div class="J_zoomImgList" style="display: none;"><span
+                                    data-src="//i1.mifile.cn/a2/1552263553_6689131_s1000_563wh.jpg"></span> <span
+                                    data-src="//i1.mifile.cn/a2/1552263553_1416033_s1000_563wh.jpg"></span> <span
+                                    data-src="//i1.mifile.cn/a2/1552263554_6452880_s1000_563wh.jpg"></span> <span
+                                    data-src="//i1.mifile.cn/a2/1552263555_7188750_s1000_750wh.jpg"></span> <span
+                                    data-src="//i1.mifile.cn/a2/1552263555_2264805_s1000_563wh.jpg"></span> <span
+                                    data-src="//i1.mifile.cn/a2/1552263556_2065450_s1000_750wh.jpg"></span></div>
+                        </div>
+
+                        <div class="comment-input"><input style="height: 46px;" type="text" placeholder="回复楼主" class="J_commentAnswerInput">
+                            <a href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn"
+                               th:attr="coId=${comment.getCoId()}">回复</a></div>
+                        <div class="comment-answer">
+                            <div th:each="hui:${comment.getReplies()}" class="answer-item"><img class="answer-img"
+                                                          th:src="@{'http://localhost:8084'+${hui.getUser().getTouXiangPath()}}">
+                                <div class="answer-content"><h3 class="" th:text="${hui.getUser().getUsername()}">赵霞</h3>
+                                    <p th:text="${hui.getRcontent()}"> 美 </p></div>
+                            </div>
+
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="http://localhost:8084/static/js/jquery-1.12.4.js" type="text/javascript"></script>
+<script type="text/javascript" src="//s01.mifile.cn/js/comment/detail.min.js?_v=2018081701"></script>
+<script src="//s01.mifile.cn/js/base.min.js?v201903011d"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $(".J_commentAnswerBtn").click(function () {
+            var _this = $(this);
+            var rcontent = $(".J_commentAnswerInput").val();
+            var coId = $(this).attr("coId");
+            $.post("http://localhost:9090/api/a/api/a/ajaxInsertReply",{"coId":coId,"rcontent":rcontent},function (data) {
+                var hui = _this.parent(".comment-input").next(".comment-answer");
+                var li = "";
+                hui.empty();
+                $(".J_commentAnswerInput").val("");
+                for(var a=0;a<data.length;a++){
+                    if(data[a].user.touXiangPath != undefined){
+                        li += "<div class=\"answer-item\">";
+                        li += "<a class=\"answer-img\" href=\"/comment/user?user_id=946092412\">" +
+                            "<img src='http://localhost:8084"+data[a].user.touXiangPath+"'></a>\n";
+                        li += "<div class=\"answer-content\">" +
+                            "<h3 class=\"\">"+data[a].user.username+"</h3><p>"+data[a].rcontent+"</p>" +
+                            "</div>\n";
+                        li += "</div>\n";
+                    }
+                }
+                hui.append(li);
+            },"JSON");
+        });
+
+    })
+</script>

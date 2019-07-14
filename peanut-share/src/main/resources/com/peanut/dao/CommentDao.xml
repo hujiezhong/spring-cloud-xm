@@ -3,16 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.peanut.dao.CommentDao">
-
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache">
-        <property name="timeToIdleSeconds" value="20"></property><!--<!–当缓存闲置60秒后销毁–>-->
-        <property name="timeToLiveSeconds" value="120"></property><!--<!–缓存存在160秒后销毁–>-->
+    <cache type="com.peanut.util.RedisCache"/>
+   <!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache">
+        <property name="timeToIdleSeconds" value="20"></property>&lt;!&ndash;<!–当缓存闲置60秒后销毁–>&ndash;&gt;
+        <property name="timeToLiveSeconds" value="120"></property>&lt;!&ndash;<!–缓存存在160秒后销毁–>&ndash;&gt;
         <property name="maxEntriesLocalHeap" value="1000"></property>
         <property name="maxEntriesLocalDisk" value="10000000"></property>
         <property name="memoryStoreEvictionPolicy" value="LRU"></property>
-    </cache>
+    </cache>-->
 
-    <resultMap id="Comment" type="Comment">
+    <resultMap id="CommentAll" type="Comment">
         <id property="coId" column="coId"></id>
         <association property="product" column="pid" javaType="Product">
             <id column="pid" property="pid"></id>
@@ -20,9 +20,54 @@
         <association property="user" column="uid" javaType="User">
             <id column="uid" property="uid"></id>
         </association>
+        <collection property="replies" column="rid" ofType="Reply">
+            <id column="rid" property="rid"></id>
+            <association property="user" column="duid" javaType="User">
+                <id column="duid" property="uid"></id>
+                <result column="dusername" property="username"></result>
+                <result property="touXiangPath" column="dtouXiangPath"></result>
+            </association>
+        </collection>
+        <collection property="commentImages" column="ciId" ofType="CommentImage">
+            <id column="ciid" property="ciId"></id>
+        </collection>
     </resultMap>
 
-    <select id="comment" parameterType="int" resultMap="Comment">
+    <insert id="insertComment" parameterType="Comment" keyColumn="coid" keyProperty="coId" useGeneratedKeys="true" >
+        insert into comment(pid,uid,cocontent,cocreatetime,goodorbad) values(#{product.pid},#{user.uid},#{coContent},now(),#{goodorbad})
+    </insert>
+
+    <select id="commentByCoId" resultMap="CommentAll" parameterType="int">
+        SELECT a.*,b.*,c.*,d.`uid` duid,d.`username` dusername,d.`touxiangpath` dtouxiangpath, e.*, f.*,
+         (SELECT COUNT(1)FROM reply WHERE coid = a.coid) num
+        FROM COMMENT a LEFT JOIN reply b ON a.`coid`=b.`coid`
+        LEFT JOIN USER c ON a.`uid`=c.`uid`
+        LEFT JOIN USER d ON d.`uid`=b.`uid`
+        LEFT JOIN product e ON e.`pid`=a.`pid`
+        LEFT JOIN commentimage f ON f.`coid` = a.`coid`
+        where a.coid=#{coId}
+        ORDER BY num DESC ,rcreatetime DESC
+    </select>
+
+    <select id="commentAndReply" resultMap="CommentAll" parameterType="int">
+        SELECT a.*,b.*,c.*,d.`uid` duid,d.`username` dusername,d.`touxiangpath` dtouxiangpath, e.*,
+        (SELECT COUNT(1)FROM reply WHERE coid = a.coid) num, f.*
+        FROM COMMENT a LEFT JOIN reply b ON a.`coid`=b.`coid`
+        LEFT JOIN USER c ON a.`uid`=c.`uid`
+        LEFT JOIN USER d ON d.`uid`=b.`uid`
+        LEFT JOIN product e ON e.`pid`=a.`pid`
+        LEFT JOIN commentimage f ON f.`coid` = a.`coid`
+        WHERE 1=1
+        <if test="pid != 0 and pid != null">
+            and a.`pid` = #{pid}
+        </if>
+        <if test="goodorbad != 0 and goodorbad != null">
+            AND a.`goodorbad` = #{goodorbad}
+        </if>
+        ORDER BY num DESC ,rcreatetime DESC
+    </select>
+
+    <select id="comment" parameterType="int" resultMap="CommentAll">
         SELECT * FROM COMMENT a LEFT JOIN USER b ON a.uid=b.uid
         <where>
           <if test="pid != 0">
@@ -36,6 +81,19 @@
             LIMIT 0,#{size}
         </if>
 
+    </select>
+
+    <select id="selectCount" parameterType="int" resultType="int">
+         SELECT COUNT(1) FROM COMMENT
+         <where>
+
+             <if test="goodorbad != 0">
+                 and goodorbad = #{goodorbad}
+             </if>
+             <if test="pid != 0">
+                 AND pid = #{pid}
+             </if>
+         </where>
     </select>
 
 </mapper>

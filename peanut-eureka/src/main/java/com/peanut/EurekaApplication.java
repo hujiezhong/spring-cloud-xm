@@ -43,7 +43,7 @@ public class EurekaApplication {
 
         System.out.println(di(8));
 */
-        SpringApplication.run(EurekaApplication.class,args);
+        SpringApplication.run(EurekaApplication.class, args);
     }
 
   /*  public static int di(int i){

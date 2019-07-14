@@ -38,3 +38,8 @@ logging:
     com:
       peanut:
         dao: debug
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  pageSizeZero: true

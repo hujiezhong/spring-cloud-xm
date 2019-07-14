@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding:0;
+}
+.a{
+    width:555px;
+    border-top:1px solid #CCCCCC;
+    text-align:center;
+    background: none;
+}
+.a img{
+    margin:50px 0px 20px;
+}
+p{
+    font-family: 微软雅黑;
+    font-size:13px;
+}
+.a p:last-child{
+    color:#999999;
+}
+#d3ul,#d3p{
+    width:272px;
+    margin:auto;
+}
+/*
+#d3p {
+
+}*/

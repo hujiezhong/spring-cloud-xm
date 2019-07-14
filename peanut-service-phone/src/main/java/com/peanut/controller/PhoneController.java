@@ -1,20 +1,15 @@
 package com.peanut.controller;
 
-import com.netflix.discovery.converters.Auto;
-import com.peanut.entity.Category;
-import com.peanut.entity.Comment;
-import com.peanut.entity.Product;
-import com.peanut.service.CategoryService;
-import com.peanut.service.CommentService;
-import com.peanut.service.ProductService;
+import com.peanut.entity.*;
+import com.peanut.service.*;
+import com.peanut.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PhoneController {
@@ -27,6 +22,24 @@ public class PhoneController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private ProductImageService pis;
+
+    @Autowired
+    private CollectionService collectionService;
+
+    @Autowired
+    private CommentImageService cis;
+
+    @Autowired
+    private OrdersService os;
+
+    @Autowired
+    private ReplyService rs;
+
+    @Autowired
+    private RedisUtil redis;
 
     @Value("${server.port}")
     private String po;
@@ -72,6 +85,87 @@ public class PhoneController {
     @RequestMapping("comment")   //查询评论 pid：商品 goodorbad：好坏评  size：查询多少 0为查询所有 或是 没有条件
     public List<Comment> comment(@RequestParam Integer pid, @RequestParam Integer goodorbad, @RequestParam Integer size){
         return commentService.comment(pid,goodorbad,size);
+    }
+
+    @RequestMapping("productByLike")    //模糊查询
+    public List<Product> productByLike(@RequestParam String pname,@RequestParam Integer size){
+        return ps.productByLike(pname, size);
+    }
+
+    @RequestMapping("selectImageProduct")   //查询大图商品
+    public List<ProductImage> selectImageProduct(@RequestParam String color,
+                                                 @RequestParam Integer cid,
+                                                 @RequestParam Integer pid,
+                                                 @RequestParam Integer size){
+        return pis.selectImageProduct(color,cid, pid, size);
+    }
+
+    @RequestMapping("selectProductImageEdition")
+    public Product selectProductImageEdition(@RequestParam Integer pid){
+        return ps.selectProductImageEdition(pid);
+    }
+
+    @RequestMapping("inserLove")
+    public int inserLove(@RequestParam Integer pid, @RequestParam Integer uid){
+        return collectionService.inserLove(pid, uid);
+    }
+
+    @RequestMapping("deleteLove")
+    public int deleteLove(@RequestParam Integer pid, @RequestParam Integer uid){
+        return collectionService.deleteLove(pid, uid);
+    }
+
+    @RequestMapping("isLove")
+    public int isLove(@RequestParam Integer pid, @RequestParam Integer uid){
+        return collectionService.isLove(pid, uid);
+    }
+
+    @RequestMapping("commentAndReply")
+    public List<Comment> commentAndReply(@RequestParam Integer pid, @RequestParam Integer goodorbad, @RequestParam Integer pageNum){
+        //PageHelper.startPage(pageNum,5);
+        System.out.println(pid);
+        List<Comment> list = commentService.commentAndReply(pid,goodorbad);
+        //Page<Comment> page = (Page<Comment>)list;
+        //System.out.println("---"+page.getPageNum());
+        //redis.set("pageNum",page.getPageNum());
+       // redis.set("pages",page.getPages()); //总页数
+        return list;
+    }
+
+    @RequestMapping(value = "insertComment")
+    public int insertComment(@RequestBody Comment com){
+        int i = commentService.insertComment(com);
+        return com.getCoId();
+    }
+
+    @RequestMapping("selectCount")
+    public int selectCount(@RequestParam Integer pid, @RequestParam Integer goodorbad){
+        return commentService.selectCount(pid,goodorbad);
+    }
+
+    @RequestMapping("insertCommentImage")
+    public int insertCommentImage(@RequestBody CommentImage ci){
+        return cis.insertCommentImage(ci);
+    }
+
+    @RequestMapping("ordersByOname")
+    public Orders ordersByOname(@RequestParam Integer uid, @RequestParam long oid, @RequestParam Integer pid){
+        return os.ordersByOname(uid, oid, pid);
+    }
+
+    @RequestMapping("replyByCoid")
+    public List<Reply> replyByCoid(@RequestParam Integer coId){
+        return rs.replyByCoid(coId);
+    }
+
+    @RequestMapping("insertReply")
+    public int insertReply(@RequestBody Reply reply){
+        return rs.insertReply(reply);
+    }
+
+    @RequestMapping("commentBtCoId")
+    public Comment commentByCoId(@RequestParam Integer coId){
+        return commentService.commentByCoId(coId);
     }
 
 }

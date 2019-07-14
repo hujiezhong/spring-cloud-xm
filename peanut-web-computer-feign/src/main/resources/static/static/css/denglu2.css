@@ -1,0 +1,52 @@
+*{
+    margin:0;
+    padding:0;
+}
+p{
+    font-family: 微软雅黑;
+    font-size:15px;
+}
+p:first-child{
+    font-size:20px;
+    line-height: 60px;
+}
+.d2a{
+    border-top:1px solid #CCCCCC;
+    text-align:center;
+    width:550px;
+    position: relative;
+    background: none;
+}
+img:last-child{
+    position: absolute;
+    right:70px;
+    top:70px;
+    display: none;
+}
+p:nth-child(2){
+    padding:20px 0px;
+    font-size:16px;
+    font-family: "微软雅黑 Light";
+}
+img{
+    margin:10px 0px;
+}
+d2a{
+    text-decoration: none;
+}
+/* 特效 */
+#d2erm:hover~#d2b{
+    display: block;
+}
+#d2erm:hover{
+    animation: spread 0.5s forwards;
+    transition: all 0.5s ease;
+}
+@keyframes spread {
+    0%{
+        transform: translate(0px,0px);
+    }
+    100%{
+        transform: translate(-20px,0px);
+    }
+}

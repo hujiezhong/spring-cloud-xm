@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peanut.dao.ProductImagesDao">
+    <cache type="com.peanut.util.RedisCache"/>
+    <resultMap id="imageByPid" type="ProductImage">
+        <id property="piId" column="piId"></id>
+        <association property="product" column="pid" javaType="Product">
+            <id column="pid" property="pid"></id>
+        </association>
+    </resultMap>
+    
+    <select id="selectImageProduct" resultMap="imageByPid" >
+        SELECT * FROM product a LEFT JOIN category b ON a.`cid` = b.cid
+			                    LEFT JOIN productimage c ON a.`pid`=c.`pid`
+		<where>
+		    <if test="color eq 'n'.toString()">
+                and c.color = #{color}
+            </if>
+            <if test="cid != 0 and cid != null">
+                and b.`parentId` = #{cid}
+            </if>
+            <if test="pid != 0 and pid != null">
+                AND a.`pid` = #{pid}
+            </if>
+            <if test="color != 'n'.toString()">
+                and color != 'n'
+            </if>
+        </where>
+        <if test="color != 'n'.toString()">
+           group by color
+        </if>
+        LIMIT 0,#{size}
+    </select>
+    
+</mapper>

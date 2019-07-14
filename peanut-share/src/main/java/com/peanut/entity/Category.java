@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public class Category implements Serializable {
 
+    private static final long serialVersionUID = -2307974581116518509L;
     private Integer cid;        //分类id
     private String cname;   //分类名称
     private Category parent;   //父分类

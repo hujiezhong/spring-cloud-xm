@@ -21,10 +21,24 @@ spring:
     password:
   mvc:
     static-path-pattern: /**
-
+  data:
+    mongodb:
+      #uri: mongodb://testrw:testrw@localhost:27017/test
+      uri: mongodb://106.13.73.229:27017/peanut
+  banner:
+    charset: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
 
 server:
   port: 8084
+  tomcat:
+    uri-encoding: UTF-8
 
 mybatis:
   configuration:
@@ -48,3 +62,8 @@ logging:
     com:
       peanut:
         dao: debug
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  pageSizeZero: true

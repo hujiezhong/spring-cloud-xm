@@ -1,0 +1,65 @@
+﻿*{
+    margin:0;
+    padding:0;
+}
+a{
+    text-decoration: none;
+}
+#denglu4{
+    margin-right: 20px;
+    width:550px;
+    text-align:center;
+    border-top:1px solid #CCCCCC;
+    background: none;
+}
+p:first-child{
+    line-height: 60px;
+    font-family: 微软雅黑;
+    font-size:20px;
+}
+p:nth-child(2){
+    margin-bottom:20px;
+    font-family: 微软雅黑;
+    font-size:16px;
+}
+li{
+    list-style-type: none;
+    margin-bottom:15px;
+}
+input{
+    width:270px;
+    height:40px;
+    font-family: 微软雅黑;
+    font-size:13px;
+}
+li:nth-child(1) input,li:nth-child(2) input{
+    border-radius: 3px;
+    border:1px solid #CCCCCC;
+    text-indent:1em;
+}
+li:last-child input{
+    background:#86CE2F;
+    color:white;
+    font-size:16px;
+    border:none;
+    border-radius:3px;
+}
+
+#zw input[name="b"]{
+    width:140px;
+    padding:0;
+    margin:0 14px 0 0;
+}
+#zw input[name="yzm"]{
+    width:110px;
+    background:#e6e6e6;
+    padding:0 15px 0 0;
+    margin:0;
+}
+#d3ul{
+    width:272px;
+    margin:auto;
+}
+#d3p{
+    margin:auto;
+}

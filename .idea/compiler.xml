@@ -14,6 +14,10 @@
         <module name="peanut-web-computer-feign" />
         <module name="peanut-web-phone-feign" />
         <module name="peanut-zuul" />
+        <module name="pm-common" />
+        <module name="pm-item-interface" />
+        <module name="pm-item-service" />
+        <module name="pm-page" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,6 +34,11 @@
       <module name="peanut-web-phone-feign" target="1.8" />
       <module name="peanut-web-phone-feign (1)" target="1.8" />
       <module name="peanut-zuul" target="1.8" />
+      <module name="pm-common" target="1.8" />
+      <module name="pm-item" target="1.8" />
+      <module name="pm-item-interface" target="1.8" />
+      <module name="pm-item-service" target="1.8" />
+      <module name="pm-page" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -46,6 +55,10 @@
       <module name="peanut-web-phone-feign" options="-parameters" />
       <module name="peanut-web-phone-feign (1)" options="-parameters" />
       <module name="peanut-zuul" options="-parameters" />
+      <module name="pm-common" options="-parameters" />
+      <module name="pm-item-interface" options="-parameters" />
+      <module name="pm-item-service" options="-parameters" />
+      <module name="pm-page" options="-parameters" />
     </option>
   </component>
 </project>

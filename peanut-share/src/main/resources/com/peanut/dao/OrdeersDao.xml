@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peanut.dao.OrdeersDao">
+    <cache type="com.peanut.util.RedisCache"/>
+    <resultMap id="orderta" type="Orders">
+        <id column="oid" property="oid"></id>
+        <result property="oorederTime" column="oordertime"></result>
+        <association property="user" column="uid" javaType="User">
+            <id column="uid" property="uid"></id>
+        </association>
+        <collection property="orderdetails" column="odid" ofType="Orderdetails">
+            <id column="odid" property="odId"></id>
+            <association property="product" column="pid" javaType="Product">
+                <id column="pid" property="pid"></id>
+            </association>
+            <association property="productImage" column="piid" javaType="ProductImage">
+                <id column="piid" property="piId"></id>
+            </association>
+            <association property="edition" column="eid" javaType="Edition">
+                <id column="eid" property="eid"></id>
+            </association>
+        </collection>
+
+    </resultMap>
+
+    <select id="ordersByOname" resultMap="orderta">
+       SELECT * FROM USER u,product p,orders o,orderdetails os,edition e
+        WHERE
+            u.uid=o.uid AND o.oid=os.oid AND os.eid=e.eid AND p.pid=os.pid AND u.uid=#{uid}
+                AND o.oid = #{oid}
+                <if test="pid != 0">
+                    AND p.pid = #{pid}
+                </if>
+    </select>
+
+    <select id="selmohu" resultMap="orderta">
+        SELECT * FROM USER u,product p,orders o,orderdetails os,edition e
+        <where>
+            u.uid=o.uid AND o.oid=os.oid AND os.eid=e.eid  AND p.pid=os.pid AND u.uid=#{uid}
+            <if test="value != null">
+                AND o.oid like  "%"#{value}"%"
+            </if>
+        </where>
+    </select>
+
+    <select id="selid" resultMap="orderta">
+        SELECT * FROM USER u,product p,orders o,orderdetails os,edition e
+        where
+            u.uid=o.uid AND o.oid=os.oid AND os.eid=e.eid  AND p.pid=os.pid AND u.uid=#{uid}
+                AND o.oid =#{oid}
+    </select>
+
+    <select id="selord" parameterType="int" resultMap="orderta">
+         SELECT * FROM USER u,product p,orders o,orderdetails os,edition e
+        WHERE u.uid=o.uid AND o.oid=os.oid AND os.eid=e.eid AND p.pid = os.pid AND
+          u.uid=#{uid} AND o.ostate !=5  ORDER BY  o.ostate,o.oordertime ASC
+    </select>
+
+    <select id="selpay" resultMap="orderta">
+        SELECT * FROM USER u,product p,orders o,orderdetails os,edition e
+        where
+            u.uid=o.uid AND o.oid=os.oid AND os.eid=e.eid  AND p.pid=os.pid AND u.uid=#{uid}
+                AND o.oid =#{oid}
+    </select>
+
+    <!--鏍规嵁璁㈠崟鐨勭姸鎬佹潵鏌ヨ-->
+    <select id="selbysta" parameterType="int" resultMap="orderta">
+       SELECT * FROM USER u,product p,orders o,orderdetails os,edition e
+        WHERE u.uid=o.uid AND o.oid=os.oid AND os.eid=e.eid  AND p.pid=os.pid AND u.uid=#{uid} AND o.ostate =#{ostate}  order by o.oordertime desc
+    </select>
+
+    <select id="selcount1" parameterType="int" resultType="int">
+       SELECT COUNT(1) FROM orders o,USER u  WHERE o.`uid`=u.`uid`
+       AND u.uid=#{uid} AND  o.ostate=1
+    </select>
+
+    <select id="selcount3" parameterType="int" resultType="int">
+       SELECT COUNT(1) FROM orders o,USER u  WHERE o.`uid`=u.`uid`
+       AND u.uid=#{uid} AND  o.ostate=2
+    </select>
+
+    <select id="selcount4" parameterType="int" resultType="int">
+       SELECT COUNT(1) FROM orders o,USER u  WHERE o.`uid`=u.`uid`
+       AND u.uid=#{uid} AND  o.ostate=4
+    </select>
+
+    <update id="ups" parameterType="java.lang.String">
+        UPDATE orders SET ostate =5 WHERE oid=#{oid}
+    </update>
+
+    <update id="wangcheng" parameterType="java.lang.String">
+        update  orders SET ostate =4 where oid=#{oid}
+    </update>
+
+    <update id="fukuan" parameterType="java.lang.String">
+        update  orders SET ostate =2 where oid=#{oid}
+    </update>
+
+
+
+
+</mapper>

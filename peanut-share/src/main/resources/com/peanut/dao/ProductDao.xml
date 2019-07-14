@@ -3,24 +3,45 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.peanut.dao.ProductDao">
-
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache">
-        <property name="timeToIdleSeconds" value="20"></property><!--<!–当缓存闲置60秒后销毁–>-->
-        <property name="timeToLiveSeconds" value="120"></property><!--<!–缓存存在160秒后销毁–>-->
+    <cache type="com.peanut.util.RedisCache"/>
+   <!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache">
+        <property name="timeToIdleSeconds" value="20"></property>&lt;!&ndash;<!–当缓存闲置60秒后销毁–>&ndash;&gt;
+        <property name="timeToLiveSeconds" value="120"></property>&lt;!&ndash;<!–缓存存在160秒后销毁–>&ndash;&gt;
         <property name="maxEntriesLocalHeap" value="1000"></property>
         <property name="maxEntriesLocalDisk" value="10000000"></property>
         <property name="memoryStoreEvictionPolicy" value="LRU"></property>
-    </cache>
+    </cache>-->
 
+    <!--普通用-->
     <resultMap id="ProductCid" type="Product">
         <id column="pid" property="pid"></id>
         <association property="category" column="cid" javaType="Category">
             <id column="cid" property="cid"></id>
+            <association property="parent" column="parentId" javaType="Category">
+                <id column="parentId" property="cid"></id>
+            </association>
         </association>
         <association property="rate" column="rateId" javaType="Rate">
             <id column="rateId" property="rateId"></id>
         </association>
     </resultMap>
+
+   <!-- 连表图片，版本-->
+    <resultMap id="ProductImageEdition" type="Product">
+        <id property="pid" column="pid"></id>
+        <collection property="productImages" column="piid" ofType="ProductImage">
+            <id column="piid" property="piId"></id>
+        </collection>
+        <collection property="editions" column="eid" ofType="Edition">
+            <id column="eid" property="eid"></id>
+        </collection>
+    </resultMap>
+
+    <select id="selectProductImageEdition" resultMap="ProductImageEdition" parameterType="int">
+        SELECT * FROM product a LEFT JOIN productimage b ON a.pid = b.`pid`
+			LEFT JOIN edition c ON b.pid = c.pid
+			WHERE a.pid = #{pid} AND b.color != 'n'
+    </select>
 
     <select id="select" resultMap="ProductCid">
         select * from product
@@ -40,6 +61,11 @@
         SELECT * FROM product a LEFT JOIN category b ON a.`cid` = b.cid
         WHERE b.`parentId` = #{cid} ORDER BY a.`createTime` DESC LIMIT 0,#{size}
     </select>
+
+    <select id="productByLike" resultMap="ProductCid">
+        SELECT * FROM product WHERE pname LIKE concat(concat("%",#{pname}),"%") LIMIT 0,5
+    </select>
+
 
 
 </mapper>

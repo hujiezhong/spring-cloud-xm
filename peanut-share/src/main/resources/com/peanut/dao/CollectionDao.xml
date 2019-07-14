@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peanut.dao.CollectionDao">
+    <cache type="com.peanut.util.RedisCache"/>
+    <resultMap id="CollectionProductUser" type="Collections">
+        <id property="colId" column="colId"></id>
+        <association property="prod" column="pid" javaType="Product">
+            <id column="pid" property="pid"></id>
+        </association>
+        <association property="user" column="uid" javaType="User">
+            <id column="uid" property="uid"></id>
+        </association>
+    </resultMap>
+
+    <insert id="inserLove" parameterType="int" >
+        insert INTO collections VALUE(0,#{pid},#{uid})
+    </insert>
+
+    <delete id="deleteLove" parameterType="int">
+        delete from collections where pid = #{pid} and uid = #{uid}
+    </delete>
+
+    <select id="isLove" resultType="int" parameterType="int">
+        select count(1) from collections where pid = #{pid} and uid = #{uid}
+    </select>
+
+    <select id="selikecount" resultType="int" parameterType="int">
+        SELECT COUNT(1) FROM collections c,USER u WHERE u.`uid`=c.uid AND u.uid=#{uid}
+    </select>
+
+    <delete id="delbycolid" parameterType="int">
+        DELETE FROM collections WHERE colid=#{colid}
+    </delete>
+
+    <select id="secbylike" parameterType="int" resultMap="CollectionProductUser">
+        SELECT p.`pid`,p.`pname`,p.`image`,p.`shopprice`,c.colid FROM collections c,USER u,product p
+         WHERE p.`pid`=c.`pid` AND u.`uid`=c.`uid` AND u.uid=#{uid}
+    </select>
+
+</mapper>

@@ -1,0 +1,282 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script type="text/javascript" async=""
+            src="//a.stat.xiaomi.com/js/mstr.js?mid=Man20b6MPqTocfIbB8cl6g%3D%3D&amp;device_id=&amp;phpsessid=&amp;mstuid=1546833118983_1605&amp;muuid=1546833118888_2635&amp;mucid=17489.0001&amp;sessionId=1843553094&amp;step=62&amp;new_visitor=0&amp;mstprevpid=&amp;mstprev_pid_loc=&amp;prevtarget=&amp;lastsource=account.xiaomi.com&amp;timestamp=1551952696186&amp;ref=https%3A%2F%2Fitem.mi.com%2Fproduct%2F10000135.html&amp;domain=.mi.com&amp;screen=1920*1080&amp;language=zh-CN&amp;vendor=Google Inc.&amp;platform=Win32&amp;gu=https%253A%252F%252Fitem.mi.com%252Fproduct%252F10000135.html&amp;miwd=&amp;edm_task=&amp;masid=&amp;client_id=&amp;pu=https%3A%2F%2Fitem.mi.com%2Fproduct%2F10000135.html&amp;rf=0&amp;mutid=17489.00011smXw6f8GS9jebuufc30190307085301&amp;muwd=%25E5%25B0%258F%25E7%25B1%25B3&amp;domain_id=100&amp;pageid=9c243deb4e8ad934&amp;curl=https%3A%2F%2Fitem.mi.com%2Fcomment%2F10000135.html&amp;xmv=1546833118983_1605_1551952245413&amp;v=1.0.0&amp;vuuid=EEVV3H95E44UPKT5"></script>
+    <script type="text/javascript" async="" src="//s1.mi.com/stat/18/jquery.statData.min.js?d=201937"></script>
+    <script type="text/javascript" async="" src="//s1.mi.com/stat/18/xmst.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>【小米9 SE怎么样,好不好】用户评价-小米商城</title>
+    <meta name="viewport" content="width=1226">
+    <meta name="description" content="米粉购买用户对小米9 SE购买心得，在这里您可以知道小米9 SE购买用户评价，了解小米9 SE好不好、小米9 SE怎么样。">
+    <meta name="keywords" content="小米9 SE,小米商城">
+    <link rel="shortcut icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//s01.mifile.cn/css/base.min.css?v201903011a">
+    <link rel="stylesheet" type="text/css" href="//s01.mifile.cn/css/comment/index.min.css?_v=20190114">
+
+    <script type="text/javascript">var _head_over_time = (new Date()).getTime();</script>
+    <script src="https://account.xiaomi.com/pass/userInfoJsonP?userId=0&amp;callback=setLoginInfo_getAccountInfo"
+            type="text/javascript" async=""></script>
+</head>
+<div th:include="top.html">难受</div>
+<!-- 导航 -->
+<div id="J_proHeader">
+
+    <div class="xm-product-box">
+        <div class="nav-bar" id="J_headNav">
+            <div class="container J_navSwitch"><h2 class="J_proName" th:text="${pie.pname}">红米6</h2>
+                <div class="con">
+                    <div class="left"><span class="separator">|</span> <a href="//www.mi.com/redmi6a/"
+                                                                          th:text="${pie.pname}">红米6A</a></div>
+                    <div class="right"> <a
+                            href="//www.mi.com/redmi6/specs/">参数</a> <span class="separator">|</span>
+                        <a th:href="@{'http://localhost:9090/api/a/api/a/commentAndReply/'+${pie.pid}}">用户评价</a>
+                        <a th:href="@{'http://localhost:9090/api/a/api/a/goumai/'+${pie.pid}}" class="btn btn-small btn-primary">立即购买</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="m-comment-wrap h-comment-wrap" name="top">
+    <div class="container nocomment J_nocomment" th:if="${commentAndReply.size() == 0}" >该商品暂无评论</div>
+    <div class="container J_commentWrap" th:if="${commentAndReply.size() > 0}">
+        <div class="m-comment-nav J_nav"><h2>大家认为</h2>
+            <div class="nav-box">
+                <a class="item cur" goodorbad="0" href="javascript:;" th:text="${' 全部（'+count+'）'}"> 全部（599）</a>
+                <a
+                    class="item item1" goodorbad="1" href="javascript:;" th:text="${' 好评（'+good+'）'}"> 好评（62） </a>
+                <a
+                    class="item item1" goodorbad="2" href="javascript:;" th:text="${' 差评（'+bad+'）'}"> 差评（14） </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span13 h-comment-main  m-comment-main J_commentCon">
+                <div class="comment-top"><h2 class="m-tit" >热门评价</h2> </div>
+                <div class="m-comment-box J_commentList">
+                    <ul class="m-comment-list J_listBody">
+
+                        <li th:each="co:${commentAndReply}" class="com-item J_resetImgCon J_canZoomBox" data-id="158915513"><a class="user-img"
+                                                                                               href="/comment/user?user_id=25845761">
+                            <img th:src="@{'http://localhost:8084'+${co.getUser().getTouXiangPath()}}"> </a>
+                            <div class="comment-info"><a class="user-name" href="/comment/user?user_id=25845761" th:text="${co.getUser().getUsername()}">asklovely</a>
+                                <p class="time" th:text="${co.getCoCreateTime()}">昨天 23:08</p></div>
+                            <div class="comment-eval"><i class="iconfont"></i> <v th:text="${co.getGoodorbad()==1?'超爱':'失望'}">超爱</v></div>
+                            <div class="comment-txt">
+                                <a th:text="${co.getCoContent()}" th:href="@{'http://localhost:9090/api/a/api/a/commentXiang/'+${co.getCoId()}}" target="_blank">我与小米在一起2639天，小米9
+                                SE的确强，有图有真相，960慢动作好玩。 </a>
+                            </div>
+                            <div class="m-img-list clearfix h-img-list" >
+
+                                <div class="img-item img-item1  showimg" th:each="ci:${co.getCommentImages()}" th:if="${ci.getCiFileName() != null}">
+                                    <img width="240" height="160"
+                                        data-src="//i1.mifile.cn/a2/1551798515_5049402_s1000_750wh.jpg"
+                                        class="J_resetImgItem J_canZoom" data-index="0"
+                                        th:src="@{'http://localhost:8084'+${ci.getCiFileName()}}" data-width="1000"
+                                        data-height="750" style="height: 160px; margin-left: -26.6667px;">
+                                    <div class="loader loader-gray"></div>
+                                </div>
+
+                            </div>
+
+                            <div class="comment-input"><input style="height: 46px;" type="text" placeholder="回复楼主"
+                                                              class="J_commentAnswerInput"> <a
+                                    href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn"
+                                    th:attr="coId=${co.getCoId()}">回复</a></div>
+                            <div class="comment-answer" >
+                                <div th:each="hui,i:${co.getReplies()}" th:if="${hui.getUser().getTouXiangPath()!=null and i.index < 3}" class="answer-item"><a class="answer-img"
+                                                            href="/comment/user?user_id=946092412">
+                                    <img th:src="@{'http://localhost:8084'+${hui.getUser().getTouXiangPath()}}"></a>
+                                    <div class="answer-content"><h3 class=""th:text="${hui.getUser().getUsername()}">葬爱家族浪子胡三少</h3>
+                                        <p th:text="${hui.getRcontent()}"> 123123 </p></div>
+                                </div>
+                                <div class="comment-more" th:if="${co.getReplies().size()>2}">
+                                    <a class="show-more" th:href="@{'http://localhost:9090/api/a/api/a/commentXiang/'+${co.getCoId()}}" target="_blank">查看全部回复</a>
+                                </div>
+                            </div>
+
+                        </li>
+
+
+                    </ul>
+                    <div style="display: none" class="comment-more"><a class="load-more J_loadMore" href="javascript:;"
+                                                 data-stat-id="2708bbe2eaf8c3e5"
+                                                 onclick="_msq.push(['trackEvent', '9c243deb4e8ad934-2708bbe2eaf8c3e5', 'javascript:', 'pcpid', '']);"
+                                                 style="display: block;">加载更多</a></div>
+                </div>
+            </div>
+            <div class="span7 h-comment-fr m-comment-spe">
+                <div class="m-comment-summary J_commentSummary">
+                    <div class="num"><p class="percent-num"><span class="m-num" th:text="${good}">585</span> 人购买后满意 </p></div>
+                    <div class="m-percent-box"><p class="percent"
+                                                  th:style="${'width:'+((good+0.01)/count)*100+'%;'}"
+                                                  th:text="${'满意度 '+((good+0.01)/count)*100+'%'}">满意度 97.7%</p></div>
+                </div> <!-- <h2 class="m-tit">最新评价</h2> <ul class="m-spe-list J_speList"></ul> --> <a
+                    href="#top" class="m-scroll-top J_scrollTop hidden fixed" data-stat-id="ef27500dc3d04992"
+                    onclick="_msq.push(['trackEvent', '9c243deb4e8ad934-ef27500dc3d04992', 'javascript:', 'pcpid', '']);"
+                    style="bottom: 0px;"> </a></div>
+        </div>
+    </div>
+</div>
+<script src="//s01.mifile.cn/js/base.min.js?v201903011a"></script>
+<script type="text/javascript" src="//s01.mifile.cn/js/comment/index.min.js?_v=20190104"></script>
+<script src="http://localhost:8084/static/js/jquery-1.12.4.js" type="text/javascript"></script>
+<script th:inline="javascript" type="text/javascript">
+
+    $(function () {
+
+
+
+        var url = window.location.pathname;
+        var good = url.substr(url.lastIndexOf("/")+1);
+        var shu = $(".item");
+        $.each(shu,function (i,val) {
+            var $shu = $(val);
+            var good2 = $shu.attr("goodorbad");
+            if(good2 == 2){
+                var bad = [[${bad}]];
+                if(bad == 0){
+                    $shu.hide();
+                }
+            }
+            if(good == good2){
+                $shu.removeClass("item1").addClass("cur").siblings().removeClass("cur");
+            }
+        })
+        $(".item").click(function () {
+            var goodorbad = $(this).attr("goodorbad");
+            $(this).removeClass("item1").addClass("cur").siblings().removeClass("cur");
+            var pid = [[${pie.pid}]]
+            window.location = "http://localhost:9090/api/a/api/a/commentAndReply/"+pid+"/"+goodorbad;
+        });
+
+        $(".J_commentAnswerBtn").click(function () {
+            var _this = $(this);
+            var rcontent = $(".J_commentAnswerInput").val();
+            var coId = $(this).attr("coId");
+            $.post("http://localhost:9090/api/a/api/a/ajaxInsertReply",{"coId":coId,"rcontent":rcontent},function (data) {
+                if(data.uid == 0){
+                    //没有登陆
+                    window.location = "http://localhost:9090/api/b/api/b/login";
+                }
+                var hui = _this.parent(".comment-input").next(".comment-answer");
+                var li = "";
+                hui.empty();
+                $(".J_commentAnswerInput").val("");
+                for(var a=0;a<data.length;a++){
+                    if(a<3 && data[a].user.touXiangPath != undefined){
+                        li += "<div class=\"answer-item\">";
+                        li += "<a class=\"answer-img\" href=\"/comment/user?user_id=946092412\">" +
+                            "<img src='http://localhost:8084"+data[a].user.touXiangPath+"'></a>\n";
+                        li += "<div class=\"answer-content\">" +
+                            "<h3 class=\"\">"+data[a].user.username+"</h3><p>"+data[a].rcontent+"</p>" +
+                            "</div>\n";
+                        li += "</div>\n";
+                    }
+                }
+                if(data.length > 2){
+                    li += "<div class=\"comment-more\">"
+                    li += "<a class=\"show-more\" href=\"javascript:void(0)\" target=\"_blank\">查看全部回复</a> ";
+                    li += "</div>"
+                }
+                hui.append(li);
+            },"JSON");
+        });
+
+
+        $(".comment-more").click(function () {
+            var pageNum = [[${pageNum}]];
+            var pid = [[${commentAndReply[0].getProduct().getPid()}]]
+            var ul = $(".J_listBody");
+            var goodorbad = $(".cur").attr("goodorbad");
+            ++pageNum;
+            $.post("http://localhost:9090/api/a/api/a/ajaxCommentGengDuo/"+pid+"/"+pageNum+"/"+goodorbad,function (data) {
+                var li = "";
+                for(var i=0;i<data.length;i++){
+                    li += "<li class=\"com-item J_resetImgCon J_canZoomBox\" data-id=\"158915513\">" +
+                          "<a class=\"user-img\" href='/comment/user?user_id=25845761'>\n";
+                    li += "<img src='http://localhost:8084"+data[i].user.touXiangPath+"'> </a>\n";
+                    li += "<div class=\"comment-info\">" +
+                          "<a class=\"user-name\" href=\"/comment/user?user_id=25845761\">"+data[i].user.username+"</a>\n" +
+                          "<p class=\"time\">"+data[i].coCreateTime+"</p></div>\n"
+                    li += "<div class='comment-eval'><i class='iconfont'></i> <v>"+(data[i].goodorbad==1?'超爱':'失望')+"</v></div>\n";
+                    li += "<div class=\"comment-txt\">\n" +
+                          "<a href=\"/comment/detail?comment_id=158915513\" target=\"_blank\">"+data[i].coContent+"</a>\n</div>\n";
+                    li += "<div class=\"m-img-list clearfix h-img-list\">\n";
+
+                    for(var b=0;b<data[i].commentImages.length;b++){
+                        if (data[i].commentImages[b].ciFileName != undefined) {
+                            li += "<div class=\"img-item img-item1  showimg\">";
+                            li += "<img width=\"240\" height=\"160\" data-src=\"//i1.mifile.cn/a2/1551798515_5049402_s1000_750wh.jpg\"" +
+                                "class=\"J_resetImgItem J_canZoom\" data-index=\"0\" " +
+                                "src='http://localhost:8084"+data[i].commentImages[b].ciFileName+"'" +
+                                "style=\"height: 160px; margin-left: -26.6667px;\">\n"
+                            li += "<div class=\"loader loader-gray\"></div>\n";
+                            li += "</div>\n";
+                        }
+
+                    }
+
+
+                    li += "</div>\n";
+                    li += "<div class=\"comment-input\">";
+                    li += "<input style=\"height: 46px;\" type=\"text\" placeholder=\"回复楼主\" class=\"J_commentAnswerInput\"> " +
+                        "<a href=\"javascript:void(0);\" class=\"btn  answer-btn J_commentAnswerBtn\data-commentid=\"158915513\">回复</a>";
+                    li += "</div>\n";
+                    li += "<div class=\"comment-answer\">\n";
+                    for(var a=0;a<data[i].replies.length;a++){
+                        if(a<3 && data[i].replies[a].user.touXiangPath != undefined){
+                            li += "<div class=\"answer-item\">";
+                            li += "<a class=\"answer-img\" href=\"/comment/user?user_id=946092412\">" +
+                                "<img src='http://localhost:8084"+data[i].replies[a].user.touXiangPath+"'></a>\n";
+                            li += "<div class=\"answer-content\">" +
+                                "<h3 class=\"\">"+data[i].replies[a].user.username+"</h3><p>"+data[i].replies[a].rcontent+"</p>" +
+                                "</div>\n";
+                            li += "</div>\n";
+                        }
+                    }
+                    if(data[i].replies.length > 2){
+                        li += "<div class=\"comment-more\">"
+                        li += "<a class=\"show-more\" href=\"javascript:void(0)\" target=\"_blank\">查看全部回复</a> ";
+                        li += "</div>"
+                    }
+                    li += "</div>\n";
+                    li += "</li>\n";
+
+                    var pages = [[${pages}]];
+                    if(pages == pageNum){
+                        $(".J_loadMore").hide();
+                    }
+                    /*var div = "<div class=\"comment-more\">";
+                        div += "<a class=\"load-more J_loadMore\" href=\"javascript:;\" style=\"display: block;\">加载更多</a>"
+                        div += "</div>\n";*/
+                }
+                ul.append(li);
+            },"JSON");
+        })
+    })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

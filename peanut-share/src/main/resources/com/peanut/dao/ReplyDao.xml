@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peanut.dao.ReplyDao">
+    <cache type="com.peanut.util.RedisCache"/>
+    <resultMap id="ReplyUC" type="Reply">
+        <id column="rid" property="rid"></id>
+        <association property="comment" column="coid" javaType="Comment">
+            <id column="coid" property="coId"></id>
+        </association>
+        <association property="user" column="uid" javaType="User">
+            <id column="uid" property="uid"></id>
+        </association>
+    </resultMap>
+
+    <select id="replyByCoid" resultMap="ReplyUC" parameterType="int">
+        SELECT * FROM reply a ,COMMENT b, USER c WHERE a.coid = b.coid AND a.uid = c.uid
+        AND a.coid = #{coId} order by rcreatetime desc
+    </select>
+
+    <insert id="insertReply" parameterType="Reply" >
+        insert into reply values(0,#{comment.coId},#{user.uid},#{rcontent},now())
+    </insert>
+
+
+</mapper>

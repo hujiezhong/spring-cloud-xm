@@ -44,12 +44,12 @@
 						for(var i=0;i<data.length;i++){
 							li += "<li>";
 							var now = new Date(year+"-"+month+"-"+ri);
-							var now2 = new Date(data[0].createTime);
+							var now2 = new Date(data[i].createTime);
 							var now3 = now - now2;
 							if(Math.floor(now3/(24*3600*1000)) < 90){
 								li += "<label>新品</label>";
 							}
-							li += "<a href='#' class='nav_item_con_img'>";
+							li += "<a href='http://localhost:9090/api/a/api/a/goumai/"+data[i].pid+"' class='nav_item_con_img'>";
 							li += "<img width='46' height='100' src='http://localhost:8084"+data[i].image+"' /> </a>";
 							li += "<a href='#' class='nav_item_con_name'>"+data[i].pname+"</a>";
 							li += "<p>"+data[i].shopPrice+"元起</p>";
@@ -74,7 +74,7 @@
 						var li = "";
 						for(var i=0;i<data.length;i++){
 							li += "<li>";
-							li += "<a href=\"#\">";
+							li += "<a href=\"http://localhost:9090/api/a/api/a/goumai/"+data[i].pid+"\">";
 							li += "<img src='http://localhost:8084"+data[i].image+"'>";
 							li += "<span>"+(data[i].pname.length > 8) ? data[i].pname.substr(0,8)+'...' : data[i].pname+"</span>";
 							li += "</a>"
@@ -109,6 +109,31 @@
 					}
 				});
 			});
+
+			// 模糊查询展示在查询框下面
+			$(".search").on("keyup",function () {
+				var pname = $(this).val().length < 1 ? '%' : $(this).val();
+				$.ajax({
+					url:"http://localhost:8084/api/a/ajaxProductByLike?pname="+pname,
+					dataType:'jsonp',
+					processData: false,
+					jsonp: "callback",
+					type:'get',
+					success:function(data){
+						var nei = "";
+						$(".qing").empty();
+						for(var i=0;i<data.length;i++){
+							nei += "<li>";
+							nei += "	<a href=''>"+(data[i].pname.length>10)?data[i].pname.substr(0,10)+'..':data[i].pname;
+							nei += "	<span>约有"+data[i].inventory+"件</span></a>";
+							nei += "</li>";
+						}
+						$(".qing").append(nei);
+						$(".qing").listview("refresh");
+						$(".qing").trigger("create");
+					}
+				});
+			});
 		})
 	</script>
 </head>
@@ -136,7 +161,7 @@
 					<div class="shopcart_logo">
 						<a href="#">
 							<i class="iconfont icon-cart"></i>
-							购物车（0）	
+							购物车（0）
 						</a>
 						<div class="shopcart-info">
 							<p>
@@ -148,9 +173,13 @@
 				<!--右侧登录、注册-->
 				<div class="user-auction">
 					<ul>
-						<li><a href="#">登录</a></li>
-						<li><a href="#">注册</a></li>
-						<li><a href="#">消息通知</a></li>
+
+						<li th:if="${user == null}"><a href="http://localhost:9090/api/b/api/b/login">登录</a></li>
+						<li th:if="${user == null}"><a href="http://localhost:9090/api/b/api/b/regi">注册</a></li>
+
+						<li th:if="${user != null}"><a href="http://localhost:9090/api/b/api/b/person" th:text="${user.getUsername()}"></a></li>
+						<li th:if="${user != null}"><a href="http://localhost:9090/api/b/api/b/tui">退出登陆</a></li>
+						<li th:if="${user != null}"><a href="http://localhost:9090/api/b/api/b/or">我的订单</a></li>
 					</ul>
 				</div>
 			</div>
@@ -165,7 +194,7 @@
 
 				<ul>
 					<li th:each="navCat:${navCategory}">
-						<a th:attr="cid=${navCat.getCid()}" class="link" href="#" th:text="${navCat.getCname()}">小米手机</a>
+						<a th:attr="cid=${navCat.getCid()}" class="link" href="http://localhost:9090/api/a/api/a/list2" th:text="${navCat.getCname()}">小米手机</a>
 						<div class="nav_item">
 							<div class="nav_item_con con_width">
 								<ul class="navList">
@@ -187,8 +216,19 @@
 				</ul>
 			</div>
 			<!-- 搜索部分 start -->
+
+			<!--<div class="header-search">
+				<form id="searchForm" class="search-form clearfix" action="/product/search" method="get">
+					<label for="search" class="hide">站内搜索</label>
+					<input class="search-text" type="search" id="search" name="keyword" autocomplete="off" />
+					<input type="submit" class="search-btn iconfont" value="&#xe616;" />
+					<div class="search-hot-words">
+						<a href="https://www.mi.com/redminote7/">红米Note 7</a><a href="https://www.mi.com/mi8/">小米8</a>                </div>
+				</form>
+			</div>-->
+
 			<div class="search_box">
-				<form auction="#">
+				<form auction="/product/search" method="get">
 					<input type="search" name="search" class="search" />
 					<button>
 						<i class="iconfont icon-sousuo"></i>
@@ -196,20 +236,8 @@
 					<!-- 默认搜索内容 -->
 					<div class="search_default">
 						<ul>
-							<li><a href="#">小米8</a></li>
-							<li><a href="#">小米MIX</a></li>
-						</ul>
-					</div>
-					<!-- 下拉列表内容 -->
-					<div class="datalist" style="right: 47px;width:224px " >
-						<ul>
-							<li><a href="#">小米6X<span>约有6件</span></a></li>
-							<li><a href="#">小米MIX 2S<span>约有5件</span></a></li>
-							<li><a href="#">黑鲨游戏手机<span>约有3件</span></a></li>
-							<li><a href="#">红米Note 5<span>约有6件</span></a></li>
-							<li><a href="#">红米5A<span>约有13件</span></a></li>
-							<li><a href="#">小米电话4C<span>约有5件</span></a></li>
-							<li><a href="#">电视32英寸<span>约有3件</span></a></li>
+							<li><a href="/api/a/goumai/8">小米8</a></li>
+							<li><a href="/api/a/goumai/6">小米MIX3</a></li>
 						</ul>
 					</div>
 				</form>
@@ -237,11 +265,8 @@
 			<!-- 定义banner -->
 			<div id="banner">
 				<ul>
-					<li class="active">
-						<a href="#"><img src="http://localhost:8084/static/images/mi_banner1.jpg" alt="小米" title="小米"></a>
-					</li>
-					<li>
-						<a href="#"><img src="http://localhost:8084/static/images/mi_banner2.jpg" alt="小米" title="小米"></a>
+					<li class="active" th:each="tj,i:${tuiJian}" th:if="${i.index<2}">
+						<a href="#"><img th:src="@{'http://localhost:8084'+${#strings.substringBefore(tj.image,'.')}+'daa.jpg'}" alt="小米" title="小米"></a>
 					</li>
 				</ul>
 				<div id="circle-list">
@@ -283,112 +308,7 @@
 		</div>
 		<!-- 定义推荐部分 end -->
 		<!-- 小米闪购 start -->
-		<div class="flashover con_width">
-			<h1 class="list_title">小米闪购
-				<div class="flashover_a">
-					<a href="javascript:;" onclick="flashover('R')">&lt;</a>
-					<a href="javascript:;" onclick="flashover('L')">&gt;</a>
-				</div>
-			</h1>
-			<div class="flashover_list">
-				<div class="flashover_item countdown goodlist4">
-					<p class="countdown_title">18:00 场</p>
-					<i class="iconfont icon-shandian"></i>
-					<p class="countdown_desc">距离结束还有</p>
-					<div class="countdown_time">
-						<label class="countdown_time_item" id="_h">00</label>
-						<label class="countdown_item_dot">:</label>
-						<label class="countdown_time_item" id="_m">00</label>
-						<label class="countdown_item_dot">:</label>
-						<label class="countdown_time_item" id="_s">00</label>
-					</div>
-				</div>
-				<div class="flashover_item_con" id="shangou">
-					<div class="flashover_item_con_div" id="shangouCon" style="left: 0px">
-						<div class="flashover_item flashover_goodlist goodlist1">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist2">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist3">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist4">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">1 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist1">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist2">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist3">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-						<div class="flashover_item flashover_goodlist goodlist4">
-							<a href="#" alt="米兔指尖积木 白色" title="米兔指尖积木 白色">
-								<div class="goodlist_content">
-									<img src="http://localhost:8084/static/images/good1.png" alt="">
-									<p class="good_title">米兔指尖积木 白色</p>
-									<p class="good_desc">玩转你的自由时光</p>
-									<p class="good_price">2 元 <label>9.9元</label></p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 		<!-- 小米闪购 end -->
 		
 		<!-- 广告 start -->
@@ -401,7 +321,7 @@
 		<div class="goods">
 			<!-- 手机 start -->
 			<div class="flashover con_width clearfix">
-				<h1 class="list_title">手机<a href="">查看更多<i class="iconfont icon-xiangyoujiantou"></i></a></h1>
+				<h1 class="list_title">手机<a th:href="@{'http://localhost:9090/api/a/api/a/gengduo?cid='+${phone[0].category.parent.cid}}">查看更多<i class="iconfont icon-xiangyoujiantou"></i></a></h1>
 				<div class="goods_item_left1">
 					<a href="#"><img src="http://localhost:8084/static/images/xmad_15323220713837_GLBVX.jpg"/></a>
 				</div>
@@ -409,9 +329,9 @@
 
 					<div class="goods_item_list" th:each="phone:${phone}">
 						<div class="goodlist_content">
-							<label>新品</label>
+							<!--<label>新品</label>-->
 							<a href="#"><img th:src="@{'http://localhost:8084'+${phone.image}}" alt=""></a>
-							<p class="good_title"><a href="#" th:text="${phone.pname}">小米8 SE 4GB+64GB</a></p>
+							<p class="good_title"><a th:href="@{'http://localhost:9090/api/a/api/a/goumai/'+${phone.pid}}" th:text="${phone.pname}">小米8 SE 4GB+64GB</a></p>
 							<p class="good_desc"
 							   th:text="${#strings.length(phone.description) > 20 ?
 							   			#strings.substring(phone.description,0,20)+'..':phone.description}" >AI 超感光双摄，三星 AMOLED 屏幕</p>
@@ -450,7 +370,7 @@
 
 						<div class="goods_item_list" th:each="computer:${computer}" th:attr="pid=${computer.pid}">
 							<div class="goodlist_content">
-								<a href="#"><img th:src="@{'http://localhost:8084'+${computer.image}}" alt=""></a>
+								<a th:href="@{'http://localhost:9090/api/a/api/a/goumai/'+${computer.pid}}"><img th:src="@{'http://localhost:8084'+${computer.image}}" alt=""></a>
 								<p class="good_title"><a href="#" th:text="${computer.pname}">电脑</a></p>
 								<p class="good_desc"
 								   th:text="${#strings.length(computer.description) > 20 ?
@@ -521,7 +441,7 @@
 
 					<div class="goods_item_list" th:each="parts:${parts}" th:attr="pid=${parts.pid}">
 						<div class="goodlist_content">
-							<a href="#"><img th:src="@{'http://localhost:8084'+${parts.image}}" alt=""></a>
+							<a th:href="@{'http://localhost:9090/api/a/api/a/goumai/'+${parts.pid}}"><img th:src="@{'http://localhost:8084'+${parts.image}}" alt=""></a>
 							<p class="good_title"><a href="#" th:text="${parts.pname}">米家飞利浦智睿台灯二代</a></p>
 							<p class="good_desc" th:text="${#strings.length(parts.description) > 20 ?
 							   			#strings.substring(parts.description,0,20)+'..':parts.description}">感知环境光，主动优化场景照明</p>
@@ -572,7 +492,7 @@
 
 					<div class="goods_item_list" th:each="tj:${tuiJian}">
 						<div class="goodlist_content">
-							<a href="#"><img th:src="@{'http://localhost:8084'+${tj.image}}" alt=""></a>
+							<a th:href="@{'http://localhost:9090/api/a/api/a/goumai/'+${tj.pid}}"><img th:src="@{'http://localhost:8084'+${tj.image}}" alt=""></a>
 							<p class="good_title"><a href="#" th:text="${tj.pname}"> 红米5 移动4G+版 2GB内存 </a></p>
 							<p class="good_price" th:text="${tj.shopPrice}">799元</p>
 						</div>

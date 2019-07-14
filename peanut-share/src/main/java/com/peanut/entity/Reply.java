@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class Reply implements Serializable {
 
+    private static final long serialVersionUID = 4026334100435311303L;
     private int rid;
     private Comment comment;  //评论
     private User user;   //用户

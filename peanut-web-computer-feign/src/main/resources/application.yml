@@ -1,4 +1,5 @@
 spring:
+
   application:
     name: peanut-web-computer-feign
   thymeleaf:
@@ -6,19 +7,26 @@ spring:
     prefix: classpath:/static/
     suffix: .html
     cache: false
+
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql:///peanutmi
     username: root
     password: root
+
+  redis:
+    host: 106.13.73.229
+    port: 6379
+    password:
+
   cloud:
     loadbalancer:
       retry:
         enabled: true
+
   mvc:
     static-path-pattern: /**
-server:
-  port: 8085
+
 
 mybatis:
   configuration:
@@ -35,3 +43,9 @@ feign:
   hystrix:
     enabled: true
 
+server:
+  port: 8085
+
+hystrix:
+  metrics:
+    enabled: false

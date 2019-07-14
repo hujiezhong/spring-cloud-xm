@@ -1,0 +1,800 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script type="text/javascript" async=""
+            src="//a.stat.xiaomi.com/js/mstr.js?mid=&amp;device_id=&amp;phpsessid=&amp;mstuid=1546833118983_1605&amp;muuid=1546833118888_2635&amp;mucid=&amp;sessionId=2003843507&amp;step=39&amp;new_visitor=0&amp;mstprevpid=&amp;mstprev_pid_loc=&amp;prevtarget=&amp;lastsource=www.baidu.com&amp;timestamp=1551604668593&amp;ref=https%3A%2F%2Fwww.mi.com%2Fp%2F1915.html&amp;domain=.mi.com&amp;screen=1920*1080&amp;language=zh-CN&amp;vendor=Google Inc.&amp;platform=Win32&amp;gu=https%253A%252F%252Fwww.mi.com%252F%253Fclient_id%253D180100041086%257Cmasid%253D17489.0001&amp;miwd=&amp;edm_task=&amp;masid=17489.0001&amp;client_id=180100041086&amp;pu=https%3A%2F%2Fwww.mi.com%2Fp%2F1915.html&amp;rf=0&amp;mutid=&amp;muwd=&amp;domain_id=100&amp;pageid=ae2a5d804d0902c3&amp;curl=https%3A%2F%2Fitem.mi.com%2Fproduct%2F10000123.html&amp;xmv=1546833118983_1605_1551599971879&amp;v=1.0.0&amp;vuuid=BSV6OUMDPBSFATCI"></script>
+    <script type="text/javascript" async="" src="//s1.mi.com/stat/18/jquery.statData.min.js?d=201933"></script>
+    <script type="text/javascript" async="" src="//s1.mi.com/stat/18/xmst.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>小米MIX 3立即购买-小米商城</title>
+    <meta name="viewport" content="width=1226">
+    <meta name="description" content="小米手机官网正品小米MIX 3推荐，小米手机小米MIX 3最新价格，有多种颜色可选，另有小米MIX 3详细介绍及图片，还有用户评价，售前咨询等。">
+    <meta name="keywords" content="小米MIX 3,小米商城">
+    <link rel="shortcut icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//s01.mifile.cn/css/base.min.css?v201903011a">
+    <link rel="stylesheet" type="text/css" href="//s01.mifile.cn/css/buy/product_buy.min.css?v=2019030103">
+    <style type="text/css">
+        body{ background:#EEEEEE;margin:0; padding:0; font-family:"微软雅黑", Arial, Helvetica, sans-serif; }
+        a{ color:#006600; text-decoration:none;}
+        a:hover{color:#990000;}
+        .top{ margin:5px auto; color:#990000; text-align:center;}
+        .info select{ border:1px #993300 solid; background:#FFFFFF;}
+        .info{ margin:5px; text-align:center;}
+        .info #show{ color:#3399FF; }
+        .bottom{ text-align:right; font-size:12px; color:#CCCCCC; width:1000px;}
+    </style>
+
+    <script type="text/javascript">var _head_over_time = (new Date()).getTime();</script>
+    <script src="https://account.xiaomi.com/pass/userInfoJsonP?userId=0&amp;callback=setLoginInfo_getAccountInfo"
+            type="text/javascript" async=""></script>
+    <script type="text/javascript" src="http://localhost:8084/static/js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+            var i = 0;
+            $($(".done").get(0)).css({"z-index": "50", "display": "block"});
+            var pan = [[${pie.getProductImages().size()}]];
+            if(pan > 3){
+                var ref = setInterval(function () {
+                    var img = $(".done").get(i);
+                    var xia = $(".ui-pager-item").get(i);
+                    ++i;
+                    if (i == 4) {
+                        i = 0;
+                    }
+                    $(xia).find(".ui-pager-link").addClass("active");
+                    $(xia).siblings().find(".active").removeClass("active");
+                    $(img).css({"z-index": "50", "display": "block"});
+                    $(img).siblings().css({"z-index": "0", "display": "none"});
+                }, 2000);
+            }
+
+
+            $(".ui-next").click(function () {
+                i = i + 1;
+                if (i == 4) {
+                    i = 0;
+                }
+                var img = $(".done").get(i);
+                var xia = $(".ui-pager-item").get(i);
+                $(xia).find(".ui-pager-link").addClass("active");
+                $(xia).siblings().find(".active").removeClass("active");
+                $(img).css({"z-index": "50", "display": "block"});
+                $(img).siblings().css({"z-index": "0", "display": "none"});
+            });
+
+            /*点击下标跳*/
+            $(".ui-pager-link").click(function () {
+                var index = $(this).attr("index");
+                i = Number(index);
+                var img = $(".done").get(i);
+                var xia = $(".ui-pager-item").get(i);
+                $(xia).find(".ui-pager-link").addClass("active");
+                $(xia).siblings().find(".active").removeClass("active");
+                $(img).css({"z-index": "50", "display": "block"});
+                $(img).siblings().css({"z-index": "0", "display": "none"});
+            });
+
+            $(".ui-wrapper").hover(function () {
+                clearInterval(ref);
+            }, function () {
+                ref = setInterval(function () {
+                    var img = $(".done").get(i);
+                    var xia = $(".ui-pager-item").get(i);
+                    ++i;
+                    if (i == 4) {
+                        i = 0;
+                    }
+                    $(xia).find(".ui-pager-link").addClass("active");
+                    $(xia).siblings().find(".active").removeClass("active");
+                    $(img).css({"z-index": "50", "display": "block"});
+                    $(img).siblings().css({"z-index": "0", "display": "none"});
+                }, 3000);
+            });
+
+            $(".btn").click(function () {
+                var cls = $(this).attr("class");
+                var yuan = $(this).find(".price").attr("yuan");
+                var shop = $(this).find(".price").text();
+                var pname = [[${pie.pname}]];
+                if (cls == 'btn btn-biglarge') {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+                }
+
+                var name = $("ul[ti=didi] .active").find(".name").text();
+                var color = $("ul[ti=gege] .active").find("a[ti=color]").text();
+                $("#J_proList v").empty();
+                $("#J_proList v").text(pname + " " + name + "" + color);
+
+                /*点击颜色换图片*/
+                var color2 = [[${pie.productImages}]];
+                var img = "";
+                for (var a = 0; a < color2.length; a++) {
+
+                    if (color2[a].color == color) {
+                        img += "<img class=\"slider done\" src='http://localhost:8084" + color2[a].fileName + "'";
+                        img += "style=\"float: none; list-style: none; position: absolute; width: 560px; z-index: 0; display: none;\">";
+                    }
+                }
+                $("#J_sliderView").empty();
+                $("#J_sliderView").append(img);
+                var img = $(".done").get(i);
+                var xia = $(".ui-pager-item").get(i);
+                $(xia).find(".ui-pager-link").addClass("active");
+                $(xia).siblings().find(".active").removeClass("active");
+                $(img).css({"z-index": "50", "display": "block"});
+                $(img).siblings().css({"z-index": "0", "display": "none"});
+
+
+                if (yuan != "" && shop != "") {
+                    if (yuan == shop) {
+                        $(".J_proPrice v").text(shop + '元');
+                        $(".J_proPrice del").empty();
+
+                        $("#J_proList del").empty();
+                        $("#J_proList span").text(shop + '元');
+                    } else {
+                        $(".J_proPrice v").text(shop + '元');
+                        $(".J_proPrice del").text(yuan + '元');
+
+                        $("#J_proList del").text(yuan + '元');
+                        $("#J_proList span").text(shop + '元');
+                    }
+                    $(".totlePrice").text(" 总计 ：" + shop + "元");
+                }
+
+
+            });
+
+            $(".J_proLoginClose").click(function () {
+                $(this).parent(".container").parent(".J_notic").slideToggle();
+            });
+            var e = [[${pie.editions}]];
+            var banben = "";
+            if(e != ""){
+                banben = e[0].eName;
+            }
+            $("#J_proList v").text([[${pie.pname}]]+" "+banben+" "+[[${color[0].color}]]);
+
+            /*点击喜欢加入数据库*/
+            $("#J_like").click(function () {
+                var pid = [[${pie.pid}]];
+                var cls = $(this).attr("class");
+                //执行添加
+                if(cls=="btn-gray btn-like btn-biglarge"){
+                    $.post("http://localhost:9090/api/a/api/a/ajaxInsertLove?pid="+pid,function (data) {
+                        if(data == -1){
+                            //没有登陆
+                            window.location = "http://localhost:9090/api/b/api/b/login";
+                        }else if(data == 1){
+                            //已经加入喜欢了累
+                            $(".btn-gray").addClass("current");
+                            $(".red").addClass("redsd");
+                        }else if(data == 0){
+                            //加入喜欢失败
+                            alert("失败了！！");
+                        }
+                    });
+                }else{
+                    //否则删除
+                    $.post("http://localhost:9090/api/a/api/a/ajaxDeleteLove?pid="+pid,function (data) {
+                        if(data == 1){
+                            //已经删除喜欢了累
+                            $(".btn-gray").removeClass("current");
+                            $(".red").removeClass("redsd");
+                        }else if(data == 0){
+                            //删除喜欢失败
+                            alert("删除失败了！！");
+                        }
+                    });
+                }
+
+            });
+
+            $(".disabled").click(function (){
+                var eid = $("ul[ti=didi] .active").attr("eid");
+                $ .ajax({
+                    url : "/cart/add/"+eid,
+                    type : "get",
+                    data:{},
+                    success : function(data) {
+                        if(data!=0){
+                            alert("加入购物车成功！")
+                            $(".cart-mini-num").text('（'+data+'）')
+                        }else {
+                            alert("无法添加！")
+                        }
+                    },
+                    error:function () {
+                        alert("加入购物车失败！")
+                    }
+                });
+            });
+
+
+        })
+    </script>
+
+</head>
+<body>
+
+<script>
+    var proBuy_id = 10000123;
+    var orderapi_host = "//cn.orderapi.mi.com";
+    var ref_goods = "2184300013";
+    var apiorder_host = "//api.order.mi.com";
+</script>
+
+<div th:include="top.html">难受</div>
+<!-- 导航 -->
+<div id="J_proHeader">
+
+    <div class="xm-product-box">
+        <div class="nav-bar" id="J_headNav">
+            <div class="container J_navSwitch"><h2 class="J_proName" th:text="${pie.pname}">红米6</h2>
+                <div class="con">
+                    <div class="left"><span class="separator">|</span> <a href="//www.mi.com/redmi6a/"
+                                                                          th:text="${pie.pname}">红米6A</a></div>
+                    <div class="right"><a href="//www.mi.com/redmi6/">概述</a> <span class="separator">|</span> <a
+                            href="//www.mi.com/redmi6/specs/">参数</a> <span class="separator">|</span> <a
+                            href="//order.mi.com/queue/f2code" target="_blank">F码通道</a> <span class="separator">|</span>
+                        <a th:href="@{'http://localhost:9090/api/a/api/a/commentAndReply/'+${pie.pid}+'/0'}">用户评价</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="xm-buyBox" id="J_buyBox">
+    <div class="box clearfix">
+        <div class="login-notic J_notic" th:if="${user == null}">
+            <!-- 未登录提示 -->
+            <div class="container">
+                为方便您购买，请提前登录 <a href="http://localhost:9090/api/b/api/b/login" class="J_proLogin" data-stat-id="ff18180e96c5ba2e"
+                                onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-ff18180e96c5ba2e', 'javascript:void0', 'pcpid', '']);"
+                                >立即登录</a>
+                <a href="javascript:void(0);" class="iconfont J_proLoginClose" data-stat-id="07d1ebe2f8b0f9ff"></a>
+            </div>
+        </div>
+        <div class="pro-choose-main container clearfix">
+            <div class="pro-view span10">
+                <!-- 左侧轮播图 -->
+                <div class="J_imgload imgload hide"></div>
+                <div id="J_img" class="img-con" style="left: 339.5px; margin-top: 0px;">
+
+                    <div class="ui-wrapper" style="max-width: 100%;">
+                        <div class="ui-viewport"
+                             style="width: 100%; overflow: hidden; position: relative; height: 560px;">
+                            <div id="J_sliderView" class="sliderWrap" style="width: auto; position: relative;">
+                                <img th:each="tu,i:${pie.getProductImages()}" class="slider done"
+                                     th:if="${tu.getColor()==color[0].getColor()}"
+                                     th:src="@{'http://localhost:8084'+${tu.getFileName()}}"
+                                     style="float: none; list-style: none; position: absolute; width: 560px; z-index: 0; display: none;">
+                            </div>
+                        </div>
+                        <div class="ui-controls ui-has-pager ui-has-controls-direction" th:if="${pie.getProductImages().size()>3}">
+                            <div class="ui-pager ui-default-pager">
+                                <div class="ui-pager-item"><a href="javascrpit:void(0)" index="0"
+                                                              class="ui-pager-link active">1</a>
+                                </div>
+                                <div class="ui-pager-item"><a href="javascrpit:void(0)" index="1" class="ui-pager-link">2</a>
+                                </div>
+                                <div class="ui-pager-item"><a href="javascrpit:void(0)" index="2" class="ui-pager-link">3</a>
+                                </div>
+                                <div class="ui-pager-item"><a href="javascrpit:void(0)" index="3" class="ui-pager-link">4</a>
+                                </div>
+                            </div>
+                            <div class="ui-controls-direction"><a class="ui-prev" href="javascript:void(0)">上一张</a><a
+                                    class="ui-next"
+                                    href="javascript:void(0)">下一张</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pro-info span10">
+                <h1 class="pro-title J_proName">
+                    <span class="img"></span>
+                    <span class="name" th:text="${pie.getPname()}">红米6</span>
+                </h1>
+                <!-- 提示 -->
+                <p class="sale-desc" id="J_desc" th:text="${pie.getDescription()}">
+                    小屏高性能的双摄手机 / 后置1200万 AI双摄 / 12nm八核处理器 / AI 人脸解锁</p>
+                <div class="loading J_load hide">
+                    <div class="loader"></div>
+                </div>
+                <!-- 主体 -->
+                <div class="J_main">
+                    <!-- 经营主题 -->
+                    <p class="aftersale-company" id="J_aftersaleCompany" type="1" desc="null">小米自营</p>
+                    <!-- 价格 -->
+                    <div class="pro-price J_proPrice">
+                        <span class="price">
+                            <v th:text="${pie.getShopPrice()+'元'}">829元 </v>
+                            <del th:text="${pie.getShopPrice()==pie.getYuanPrice()?'':pie.getYuanPrice()+'元'}">999元</del>
+                        </span>
+                        <span class="seckill-notic hide"><em></em><i></i><span><span> </span>
+                    </span></span></div>
+
+                    <!-- 预售提示倒计时 -->
+                    <div class="pro-time hide J_proBook">
+                        <div class="pro-time-head">
+                            预售
+                            <span class="time J_bookTime"></span>
+                        </div>
+                        <div class="pro-time-con">
+                            预付款<span class="pro-time-price">￥<em class="J_bookPrice"></em></span>
+                            <span class="pro-book-rule J_bookRuleTips hide">预售规则<em
+                                    class="icon J_bookRule">?</em></span>
+                        </div>
+                        <div class="pro-book-rule-con J_bookRuleCon hide">
+                            <em><i></i></em>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 预约提示倒计时 -->
+                    <div class="pro-time hide J_proOrder">
+                        <div class="pro-time-head">
+                            限时预约
+                            <span class="time J_orderTime"></span>
+                        </div>
+                        <div class="pro-time-con">
+                            <span class="pro-time-price">￥<em class="J_orderPrice"></em></span>
+                            <span class="pro-order-count J_orderCount hide"></span>
+                        </div>
+                    </div>
+                    <!-- 常态秒杀提示倒计时 -->
+                    <div class="pro-time hide J_proSeckill">
+                        <div class="pro-time-head">
+                            <em class="seckill-icon"></em>
+                            <i></i>
+                            <span class="time J_seckillTime"></span>
+                        </div>
+                        <div class="pro-time-con">
+                            <span class="pro-time-price">￥<em class="J_seckillPrice"></em><del>￥<em
+                                    class="J_seckillPriceDel"></em></del></span>
+                        </div>
+                    </div>
+
+
+                    <!-- 分仓地址 -->
+                    <!--<div class="J_addressWrap address-wrap">
+                        <div class="user-default-address" id="J_userDefaultAddress"><i
+                                class="iconfont iconfont-location"></i>
+
+                            <div class="info">
+                                <div>
+                                    <select id="s_province" name="s_province"></select>
+                                    <select id="s_city" name="s_city" ></select>
+                                    <select id="s_county" name="s_county"></select>
+                                    <input type="text" name="xiangxi" style="margin-left: 5px;font-family: '微软雅黑';border: 1px solid black" placeholder="详细地址！"/>
+                                    <script class="resources library" src="http://localhost:8084/static/js/area.js" type="text/javascript"></script>
+
+                                    <script type="text/javascript">_init_area();</script>
+                                </div>
+                                <div id="show"></div>
+                            </div>
+
+                        </div>
+                    </div>-->
+
+                    <!-- 产品版本 -->
+                    <div class="list-wrap" id="J_list">
+                        <div class="pro-choose pro-choose-col2 J_step" data-index="0"
+                             th:if="${pie.getEditions()[0].geteName() != ''}">
+                            <div class="step-title" data-name="选择版本"> 选择版本</div>
+                            <ul class="step-list step-one clearfix" ti="didi">
+
+                                <li th:each="ban,i:${pie.getEditions()}" th:attr="eid=${ban.getEid()}"
+                                    th:class="${i.index<1?'btn btn-biglarge active':'btn btn-biglarge'}">
+                                    <a href="javascript:void(0);" class="step-name">
+                                        <span class="name" th:text="${ban.geteName()}">3GB+32GB </span>
+                                        <span class="price" th:attr="yuan=${ban.geteYuanPrice()}"
+                                              th:text="${ban.geteShopPrice()}">729</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="pro-choose pro-choose-col2 J_step" data-index="1">
+                            <div class="step-title" data-name="选择颜色"> 选择颜色</div>
+                            <ul class="step-list clearfix" ti="gege">
+
+                                <li th:each="tu,i:${color}"
+                                    th:class="${i.index<1?'btn btn-biglarge active':'btn btn-biglarge'}"
+                                    data-id="2182800007" data-cid="1182800007">
+                                    <a href="javascript:void(0);" ti="color" class="step-name"
+                                       th:text="${tu.getColor()}">
+                                        流沙金
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div id="J_relation"></div>
+                    <!-- 上面安装服务 -->
+                    <!-- 已选择的产品 -->
+                    <div class="pro-list" id="J_proList">
+                        <ul>
+                            <li>
+                                <v>
+                                    红米6 4GB+64GB 流沙金
+                                </v>
+                                <del th:text="${pie.getYuanPrice() == pie.getShopPrice()?'':pie.getYuanPrice()+'元'}">
+                                    999元
+                                </del>
+                                <span th:text="${pie.getShopPrice()}">829 元 </span></li>
+                            <li class="totlePrice" th:text="${' 总计 ：'+pie.getShopPrice()+'元'}"> 总计
+                                ：829元
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 购买按钮 -->
+
+                    <ul class="btn-wrap clearfix" id="J_buyBtnBox">
+                        <li><a data-type="common" data-sign="disabled" data-tip=""
+                               class="btn btn-line-primary btn-biglarge J_setRemind disabled" href="javascript:void(0);"
+                               data-name="加入购物车" th:text="${pie.getFlag()>0?'加入购物车':'到货通知'}">到货通知</a></li>
+                        <li><a href="javascript:void(0)"
+                               class="btn-gray btn-like btn-biglarge" id="J_like">
+                            <i class="iconfont default"></i>
+                            <i class="iconfont red"><i class="iconfont red J_redCopy"></i></i>
+                            喜欢
+                        </a></li>
+                    </ul>
+
+
+                    <div class="pro-policy" id="J_policy"><a href="javascript:void(0);" title=""> <span class="support">  <i
+                            class="iconfont"></i>  <em>小米自营</em> </span> </a> <a href="javascript:void(0);"
+                                                                                  title="由小米发货"> <span class="support">  <i
+                            class="iconfont"></i>  <em>小米发货</em> </span> </a> <a href="javascript:void(0);" title="">
+                        <span class="support">  <i class="iconfont"></i>  <em>7天无理由退货</em> </span> </a> <a
+                            href="javascript:void(0);" title="由小米发货的商品，单笔满150元免运费;
+由第三方商家发货的商品，免运费;
+特殊商品需要单独收取运费，具体以实际结算金额为准；优惠券等不能抵扣运费金额;"> <span class="support">  <i class="iconfont"></i>  <em>运费说明</em> </span> </a>
+                        <a href="https://m.mi.com/aftersale/policy/34" target="_blank" title=""> <span class="support">  <i
+                                class="iconfont"></i>  <em>售后服务政策</em> </span> </a></div>
+                </div>
+                <!-- 获取商品失败 -->
+                <!--<div class="error hide J_error">
+                    <h3>有点小问题，请点击按钮刷新重试</h3>
+                    <a href="javascript:void(0)" class="btn btn-primary J_reload" data-stat-id="9b9ab6e736215b75"
+                       onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-9b9ab6e736215b75', 'javascript:void0', 'pcpid', '']);">刷新</a>
+                </div>-->
+            </div>
+        </div>
+        <!-- 预售流程 -->
+        <div class="pro-infomation" id="J_proInfo">
+            <div class="pro-book-flow container hide" id="J_bookFlow">
+                <span class="book-name">预售流程</span>
+                <ul class="clearfix">
+                    <li class="item01">
+                        <span class="icon icon1"></span>
+                        <div>
+                            <span class="item-name">1.支付预付款</span>
+                            <span class="item-infor"></span>
+                        </div>
+                    </li>
+                    <li class="item02">
+                        <span class="icon icon2"></span>
+                        <div>
+                            <span class="item-name">2.支付尾款 <em>（在我的订单完成）</em></span>
+                            <span class="item-infor"></span>
+                        </div>
+                    </li>
+                    <li class="item03">
+                        <span class="icon icon3"></span>
+                        <div>
+                            <span class="item-name">3.商品发货</span>
+                            <span class="item-infor"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="infor-con">
+                <div class="section is-visible preload">
+                    <div class="container"><h3>特别说明 </h3>
+                        <div class="con"><img
+                                data-src="https://i8.mifile.cn/b2c-mimall-media/aaee9db8790426631abc3b76fa3da617.jpg"
+                                class="slider done"
+                                src="https://i8.mifile.cn/b2c-mimall-media/aaee9db8790426631abc3b76fa3da617.jpg"></div>
+                    </div>
+                </div>
+                <div class="section preload is-visible">
+                    <div class="container"><h3>官方微信 </h3>
+                        <div class="con"><img
+                                data-src="//i8.mifile.cn/b2c-mimall-media/1a84b2b629512205bf528aae91361efb.jpg"
+                                class="slider done"
+                                src="https://i8.mifile.cn/b2c-mimall-media/1a84b2b629512205bf528aae91361efb.jpg"></div>
+                    </div>
+                </div>
+                <div class="section preload is-visible">
+                    <div class="container"><h3>价格说明 </h3>
+                        <div class="con"><img
+                                data-src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a482afa34053b1b32ece1023475af7fb.jpeg"
+                                class="slider done"
+                                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a482afa34053b1b32ece1023475af7fb.jpeg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 到货通知设置成功弹窗 -->
+<div class="modal modal-setRemind modal-hide fade" id="J_setRemindModal">
+    <span class="close iconfont" data-dismiss="modal"><i class="iconfont"></i></span>
+    <div class="modal-body">
+        <h4>到货通知设置成功!</h4>
+        <p>
+            请下载小米商城App ，开启通知功能
+        </p>
+        <img src="//i3.mifile.cn/f/i/2014/cn/appdownload/apdownload-phone-code.png" alt="">
+        <span class="btn btn-primary" data-dismiss="modal">我知道了</span>
+    </div>
+</div>
+
+<!-- 收货地址选择 -->
+
+
+<script type="text/javascript">
+    //设置图片大小
+    function getImage(path, size) {
+        var patt = /.jpg|.jpeg|.png/;
+        var result = patt.exec(path);
+        var thumb = path.indexOf('fds.api.mi-img.com') != -1;
+        return thumb ? (path + '?thumb=1&w=' + size.w + '&h=' + size.h) : path.replace(patt, ('!' + size.w + 'x' + size.h + result));
+    }
+</script>
+
+<!-- 产品轮播图模板 -->
+
+
+<!-- 预售规则 -->
+<!-- 预售规则 -->
+
+
+</div>
+
+<div id="J_orderCheckGlassBuy" class="modal fade modal-order modal-check modal-hide">
+    <a class="close" data-dismiss="modal" data-stat-id="8ddc27466322ce93"
+       onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-8ddc27466322ce93', '', 'pcpid', '']);"><i
+            class="iconfont"></i></a>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <div class="actions">
+            <button class="btn btn-green" id="J_GlasschooseBack">修改信息</button>
+            <button class="btn btn-primary" id="J_GlassAddCart">我已确认</button>
+        </div>
+    </div>
+</div>
+
+<!-- .modal-weixin END -->
+<div class="modal modal-hide modal-bigtap-queue" id="J_bigtapQueue">
+    <div class="modal-body">
+        <span class="close" data-dismiss="modal" aria-hidden="true">退出排队</span>
+        <div class="con">
+            <div class="title">正在排队，请稍候喔！</div>
+            <div class="queue-tip-box">
+                <p class="queue-tip">当前人数较多，请您耐心等待，排队期间请不要关闭页面。</p>
+                <p class="queue-tip">时常来官网看看，最新产品和活动信息都会在这里发布。</p>
+                <p class="queue-tip">下载小米商城 App 玩玩吧！产品开售信息抢先知道。</p>
+                <p class="queue-tip">发现了让你眼前一亮的小米产品，别忘了分享给朋友！</p>
+                <p class="queue-tip">产品开售前会有预售信息，关注官网首页就不会错过。</p>
+            </div>
+        </div>
+
+        <div class="queue-posters">
+            <div class="poster poster-3"></div>
+            <div class="poster poster-2"></div>
+            <div class="poster poster-1"></div>
+            <div class="poster poster-4"></div>
+            <div class="poster poster-5"></div>
+        </div>
+    </div>
+</div>
+<!-- .xm-dm-queue END -->
+<div id="J_bigtapError" class="modal modal-hide modal-bigtap-error">
+    <span class="close" data-dismiss="modal" aria-hidden="true"><i class="iconfont"></i></span>
+    <div class="modal-body">
+        <h3>抱歉，网络拥堵无法连接服务器</h3>
+        <p class="error-tip">由于访问人数太多导致服务器压力山大，请您稍后再重试。</p>
+        <p>
+            <a class="btn btn-primary" id="J_bigtapRetry" data-stat-id="cb61bccda6f25a90"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-cb61bccda6f25a90', '', 'pcpid', '']);">重试</a>
+        </p>
+    </div>
+</div>
+
+
+<div id="J_bigtapModeBox" class="modal fade modal-hide modal-bigtap-mode">
+    <span class="close" data-dismiss="modal"><i class="iconfont"></i></span>
+    <div class="modal-body">
+        <h3 class="title">为防黄牛，请您输入下面的验证码</h3>
+        <p class="desc">在防黄牛的路上，我们一直在努力，也知道做的还不够。<br>
+            所以，这次劳烦您多输一次验证码，我们一起防黄牛。</p>
+        <div class="mode-loading" id="J_bigtapModeLoading">
+            <img src="//i1.mifile.cn/f/i/2014/cn/loading.gif" alt="" width="32" height="32">
+            <a id="J_bigtapModeReload" class="reload  hide" href="javascript:void(0);" data-stat-id="2de5b45717f3289e"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-2de5b45717f3289e', 'javascript:void0', 'pcpid', '']);">网络错误，点击重新获取验证码！</a>
+        </div>
+        <div class="mode-action hide" id="J_bigtapModeAction">
+            <div class="mode-con" id="J_bigtapModeContent"></div>
+            <input type="text" name="bigtapmode" class="input-text" id="J_bigtapModeInput" placeholder="请输入正确的验证码">
+            <p class="tip" id="J_bigtapModeTip"></p>
+            <a class="btn  btn-gray" id="J_bigtapModeSubmit" data-stat-id="656c3e98016a0d8a"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-656c3e98016a0d8a', '', 'pcpid', '']);">确认</a>
+        </div>
+    </div>
+</div>
+<!-- .xm-dm-error END -->
+<div id="J_modal-globalSites" class="modal fade modal-hide modal-globalSites" data-width="640">
+    <div class="modal-hd">
+        <a class="close" data-dismiss="modal" data-stat-id="a0641baa711604bc"
+           onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-a0641baa711604bc', '', 'pcpid', '']);"><i
+                class="iconfont"></i></a>
+        <span class="title">Select Region</span>
+    </div>
+    <div class="modal-bd">
+        <h3>Welcome to Mi.com</h3>
+        <p class="modal-globalSites-tips">Please select your country or region</p>
+        <p class="modal-globalSites-links clearfix">
+
+            <a href="//www.mi.com/hk/" data-stat-id="eb091b4a01763b29"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-eb091b4a01763b29', '//www.mi.com/hk/', 'pcpid', '']);">Hong
+                Kong</a>
+            <a href="//www.mi.com/tw/" data-stat-id="a521ac344c7690bc"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-a521ac344c7690bc', '//www.mi.com/tw/', 'pcpid', '']);">Taiwan</a>
+            <a href="//www.mi.com/sg/" data-stat-id="c761ebec7f255e10"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-c761ebec7f255e10', '//www.mi.com/sg/', 'pcpid', '']);">Singapore</a>
+            <a href="//www.mi.com/my/" data-stat-id="67af87f49719a225"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-67af87f49719a225', '//www.mi.com/my/', 'pcpid', '']);">Malaysia</a>
+            <a href="//www.mi.com/ph/" data-stat-id="acb65aeaa8c6194b"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-acb65aeaa8c6194b', '//www.mi.com/ph/', 'pcpid', '']);">Philippines</a>
+            <a href="//www.mi.com/in/" data-stat-id="a6f69833d363fa58"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-a6f69833d363fa58', '//www.mi.com/in/', 'pcpid', '']);">India</a>
+            <a href="//www.mi.com/id/" data-stat-id="a1b90cab00f67869"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-a1b90cab00f67869', '//www.mi.com/id/', 'pcpid', '']);">Indonesia</a>
+            <a href="//www.mi.com/global/" data-stat-id="e4c8815aeb152c3d"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-e4c8815aeb152c3d', '//www.mi.com/global/', 'pcpid', '']);">Global
+                Home</a>
+            <a href="//www.mi.com/mena/" data-stat-id="418afdde60dd3282"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-418afdde60dd3282', '//www.mi.com/mena/', 'pcpid', '']);">MENA</a>
+            <a href="//www.mi.com/pl/" data-stat-id="680dfde939f92362"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-680dfde939f92362', '//www.mi.com/pl/', 'pcpid', '']);">Poland</a>
+            <a href="//www.mi.com/ua/" data-stat-id="05194c118830f3f6"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-05194c118830f3f6', '//www.mi.com/ua/', 'pcpid', '']);">Ukraine</a>
+            <a href="//www.mi.com/ru/" data-stat-id="d4b1cd5dbaf5d7eb"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-d4b1cd5dbaf5d7eb', '//www.mi.com/ru/', 'pcpid', '']);">Russia</a>
+            <a href="//www.mi.com/vn/" data-stat-id="1350c09709e27ff3"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-1350c09709e27ff3', '//www.mi.com/vn/', 'pcpid', '']);">Vietnam</a>
+            <a href="//www.mi.com/mx/" data-stat-id="50cdcda3fa46d3a8"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-50cdcda3fa46d3a8', '//www.mi.com/mx/', 'pcpid', '']);">Mexico</a>
+            <a href="//www.mi.com/kr/" data-stat-id="6efdcc238f02b28f"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-6efdcc238f02b28f', '//www.mi.com/kr/', 'pcpid', '']);">Korea</a>
+            <a href="//www.mi.com/eg/" data-stat-id="250f77a6d4496a77"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-250f77a6d4496a77', '//www.mi.com/eg/', 'pcpid', '']);">Egypt</a>
+            <a href="//www.mi.com/th/" data-stat-id="592285987999d123"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-592285987999d123', '//www.mi.com/th/', 'pcpid', '']);">Thailand</a>
+            <a href="//www.mi.com/es/" data-stat-id="39bcd3ead188acc1"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-39bcd3ead188acc1', '//www.mi.com/es/', 'pcpid', '']);">Spain</a>
+            <a href="//www.mi.com/us/" data-stat-id="1ce43c402523bafc"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-1ce43c402523bafc', '//www.mi.com/us/', 'pcpid', '']);">United
+                States</a>
+            <a href="//www.mi.com/it/" data-stat-id="81a989a7f981415a"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-81a989a7f981415a', '//www.mi.com/it/', 'pcpid', '']);">Italy</a>
+            <a href="//www.mi.com/fr/index.html" data-stat-id="041b222ce2cb6b89"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-041b222ce2cb6b89', '//www.mi.com/fr/index.html', 'pcpid', '']);">France</a>
+            <a href="//www.mi.com/bd/" data-stat-id="e38b5d555aee49ea"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-e38b5d555aee49ea', '//www.mi.com/bd/', 'pcpid', '']);">Bangladesh</a>
+            <a href="//www.mi.com/uk/" data-stat-id="8b34492b2652c37a"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-8b34492b2652c37a', '//www.mi.com/uk/', 'pcpid', '']);">United
+                Kingdom</a>
+            <a href="//www.mi.com/cl/" data-stat-id="5061046b7d3cf970"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-5061046b7d3cf970', '//www.mi.com/cl/', 'pcpid', '']);">Chile</a>
+            <a href="//www.mi.com/np/" data-stat-id="46a3851b509533c0"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-46a3851b509533c0', '//www.mi.com/np/', 'pcpid', '']);">Nepal</a>
+            <a href="//www.mi.com/lk/" data-stat-id="9ba2aa64641f8e41"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-9ba2aa64641f8e41', '//www.mi.com/lk/', 'pcpid', '']);">Sri
+                Lanka</a>
+            <a href="//www.mi.com/tr/" data-stat-id="486fe9d3eef07a21"
+               onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-486fe9d3eef07a21', '//www.mi.com/tr/', 'pcpid', '']);">Turkey</a>
+        </p>
+    </div>
+</div>
+<!-- .modal-globalSites END -->
+
+<script src="//s01.mifile.cn/js/base.min.js?v201903011a"></script>
+<script>
+    (function () {
+        MI.namespace('GLOBAL_CONFIG');
+        MI.GLOBAL_CONFIG = {
+            orderSite: '//order.mi.com',
+            wwwSite: '//www.mi.com',
+            cartSite: '//cart.mi.com',
+            itemSite: '//item.mi.com',
+            assetsSite: '//s01.mifile.cn',
+            listSite: '//list.mi.com',
+            searchSite: '//search.mi.com',
+            mySite: '//my.mi.com',
+            damiaoSite: '//tp2.hd.mi.com/',
+            damiaoGoodsId: [],
+            damiaoPresalesGoodsId: [],
+            logoutUrl: '//order.mi.com/site/logout',
+            staticSite: '//static.mi.com',
+            quickLoginUrl: 'https://account.xiaomi.com/pass/static/login.html'
+        };
+        MI.setLoginInfo.orderUrl = MI.GLOBAL_CONFIG.orderSite + '/user/order';
+        MI.setLoginInfo.logoutUrl = MI.GLOBAL_CONFIG.logoutUrl;
+        MI.setLoginInfo.init(MI.GLOBAL_CONFIG);
+        MI.miniCart.init();
+        MI.updateMiniCart();
+    })();
+</script>
+<script type="text/javascript" src="//s01.mifile.cn/js/buy/product_buy.min.js?v=2019030105"></script>
+<script>
+    var _msq = _msq || [];
+    _msq.push(['setDomainId', 100]);
+    _msq.push(['trackPageView']);
+    (function () {
+        var ms = document.createElement('script');
+        ms.type = 'text/javascript';
+        ms.async = true;
+        ms.src = '//s1.mi.com/stat/18/xmst.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ms, s);
+    })();
+</script>
+
+<script type="text/javascript">
+    // 是否存在于喜欢
+    var pid = [[${pie.pid}]];
+    $.post("http://localhost:9090/api/a/api/a/ajaxIsLove?pid="+pid,function (data) {
+        if(data == 1){
+            //存在
+            $(".btn-gray").addClass("current");
+            $(".red").addClass("redsd");
+        }else{
+            $(".btn-gray").removeClass("current");
+            $(".red").removeClass("redsd");
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    var Gid  = document.getElementById ;
+    var showArea = function(){
+        Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +
+            Gid('s_city').value + " - 县/区" +
+            Gid('s_county').value + "</h3>"
+    }
+    Gid('s_county').setAttribute('onchange','showArea()');
+</script>
+
+
+<div id="J_agreeModal" class="modal fade modal-agree in modal-hide">
+    <div class="modal-hd"><a class="close J_close" data-dismiss="modal" data-stat-id="a0641baa711604bc"
+                             onclick="_msq.push(['trackEvent', '0c809c9051a0da7d-a0641baa711604bc', '', 'pcpid', '']);"><i
+            class="iconfont"></i></a>
+        <h3>小米商城协议更新</h3></div>
+    <div class="modal-body">
+        <div class="desc"></div>
+        <div class="con"></div>
+    </div>
+    <div class="modal-ft">
+        <div class="actions">
+            <button class="btn btn-line-gray J_close" data-dismiss="modal">不同意</button>
+            <button class="btn btn-primary J_sure">同意</button>
+        </div>
+    </div>
+</div>
+<div th:include="button.html"></div>
+</body>

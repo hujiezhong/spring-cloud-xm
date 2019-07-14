@@ -45,7 +45,7 @@
                             var now3 = now - now2;
                             li += "<li class=\"first\">"
                             li += "<div class=\"figure figure-thumb\">";
-                            li += "<a href=\"https://www.mi.com/mix3/\"><img src='http://localhost:8084"+data[i].image+"' alt=\""+data[i].pname+"\"   width=\"160\"\n" +
+                            li += "<a href=\"http://localhost:9090/api/a/api/a/goumai/"+data[i].pid+"\"><img src='http://localhost:8084"+data[i].image+"' alt=\""+data[i].pname+"\"   width=\"160\"\n" +
                                   "height=\"110\"/></a>";
                             li += "</div>";
                             li += "<div class='title'><a href='https://www.mi.com/mix3/'>"+data[i].pname+"</a></div>";
@@ -66,6 +66,12 @@
 					}*/
                 });
             });
+
+            $("#J_miniCartTrigger").hover(function () {
+                $("#J_miniCartMenu").show();
+            },function () {
+                $("#J_miniCartMenu").hide();
+            })
         })
     </script>
 </head>
@@ -87,7 +93,22 @@
                                        id="J_downloadapp">下载app</a><span class="sep">|</span><a
                 href="#J_modal-globalSites" data-toggle="modal">Select Region</a>
         </div>
-        <div class="topbar-cart" id="J_miniCartTrigger">
+
+        <div class="header_shopcart">
+            <div class="shopcart_logo">
+                <a href="#">
+                    <i class="iconfont icon-cart"></i>
+                    购物车（<span th:text="${cartnum}">0</span>）
+                </a>
+                <div class="shopcart-info">
+                    <p>
+                        购物车中还没有商品，赶紧选购吧!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="topbar-cart" id="J_miniCartTrigger">
             <a class="cart-mini" id="J_miniCartBtn" href="//static.mi.com/cart/"><i
                     class="iconfont">&#xe60c;</i>购物车<span class="cart-mini-num J_cartNum"></span></a>
             <div class="cart-menu" id="J_miniCartMenu">
@@ -95,11 +116,34 @@
                     <div class="loader"></div>
                 </div>
             </div>
+        </div>-->
+
+        <div class="topbar-info" id="J_userInfo" th:if="${user ==null}">
+            <a rel="nofollow" class="link" href="http://localhost:9090/api/b/api/b/login">登录</a>
+            <span class="sep">|</span>
+            <a rel="nofollow" class="link" href="http://localhost:9090/api/b/api/b/regi">注册</a>
+            <span class="sep">|</span><span class="message">
+            <a rel="nofollow" data-href="//order.mi.com/message/list" class="J_needAgreement" data-login="true">消息通知<i class="J_miMessageTotal"></i>
+            </a></span></div>
+
+        <div class="topbar-info" id="J_userInfon" th:if="${user !=null}">
+            <span class="user">
+                <a rel="nofollow" class="user-name" href="http://localhost:9090/api/b/api/b/person" th:text="${user.getUsername()}" target="_blank" >
+                    <span class="name" >
+                    </span>
+                </a>
+            </span><span class="sep">|</span>
+            <span class="message" >
+                <a rel="nofollow" href="http://localhost:9090/api/b/api/b/tui"><i class="J_miMessageTotal">退出登陆</i>
+                </a>
+            </span><span class="sep">|</span><a rel="nofollow" class="link link-order" href="http://localhost:9090/api/b/api/b/or" target="_blank" >我的订单</a>
         </div>
-        <div class="topbar-info" id="J_userInfo">
+
+
+        <!--<div class="topbar-info" id="J_userInfo">
             <a class="link" href="//order.mi.com/site/login" data-agreement="true" data-login="true">登录</a><span
                 class="sep">|</span><a class="link" href="https://account.xiaomi.com/pass/register"
-                                       data-agreement="true" data-register="true">注册</a></div>
+                                       data-agreement="true" data-register="true">注册</a></div>-->
     </div>
 </div>
 <div class="site-header">
@@ -109,11 +153,11 @@
         </div>
         <div class="header-nav">
             <ul class="nav-list J_navMainList clearfix">
-                <li id="J_navCategory" class="nav-category">
-                    <a class="link-category" href="list"><span class="text">全部商品分类</span></a>
+                <li  class="nav-category">
+                    <a class="link-category" href="/api/a/api/a/list2"><span class="text">全部商品分类</span></a>
                 </li>
                 <li class="nav-item" th:each="navCat:${navCategory}">
-                    <a class="link" th:attr="cid=${navCat.getCid()}" href="javascript: void(0);"><span th:text="${navCat.getCname()}" class="text">小米手机</span><span
+                    <a class="link" th:attr="cid=${navCat.getCid()}" th:href="@{'/powerbank/'+${navCat.getCid()}}"><span th:text="${navCat.getCname()}" class="text">小米手机</span><span
                             class="arrow"></span></a>
                     <div class="item-children">
                         <div class="container">
@@ -139,24 +183,12 @@
             </ul>
         </div>
         <div class="header-search">
-            <form id="J_searchForm" class="search-form clearfix" action="//search.mi.com/search" method="get">
+            <form id="searchForm" class="search-form clearfix" action="/product/search" method="get">
                 <label for="search" class="hide">站内搜索</label>
-                <input class="search-text" type="search" id="search" name="keyword" autocomplete="off"/>
-                <div class="datalist">
-                    <ul>
-                        <li><a href="#">小米6X<span>约有6件</span></a></li>
-                        <li><a href="#">小米MIX 2S<span>约有5件</span></a></li>
-                        <li><a href="#">黑鲨游戏手机<span>约有3件</span></a></li>
-                        <li><a href="#">红米Note 5<span>约有6件</span></a></li>
-                        <li><a href="#">红米5A<span>约有13件</span></a></li>
-                        <li><a href="#">小米电话4C<span>约有5件</span></a></li>
-                        <li><a href="#">电视32英寸<span>约有3件</span></a></li>
-                    </ul>
-                </div>
-                <input type="submit" class="search-btn iconfont" value="&#xe616;"/>
+                <input class="search-text" type="search" id="search" name="keyword" autocomplete="off" />
+                <input type="submit" class="search-btn iconfont" value="&#xe616;" />
                 <div class="search-hot-words">
-                    <a href="https://www.mi.com/mi8/">小米8</a><a href="https://item.mi.com/product/10000085.html">小米MIX
-                    2S</a></div>
+                    <a href="https://www.mi.com/redminote7/">红米Note 7</a><a href="https://www.mi.com/mi8/">小米8</a>                </div>
             </form>
         </div>
     </div>

@@ -1,28 +1,42 @@
 package com.peanut.entity;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 订单
  */
 public class Orders implements Serializable {
 
-    private int oid;
+    private static final long serialVersionUID = -6228300582030673194L;
+    private long oid;
     private User user;  //用户
     private String oname;  //收货人
     private String otelphone;   //收货人电话
     private String oaddress;    //收货地址
+    @JSONField(format = "yyyy-MM-dd")
     private Date oorederTime;   //收获时间
     private double ototal;  //订单总额
     private int ostate;     //订单状态 1：待发货 2：已配货 3：已发货 4：已接收
+    private List<Orderdetails> orderdetails;
 
-    public int getOid() {
+    public List<Orderdetails> getOrderdetails() {
+        return orderdetails;
+    }
+
+    public void setOrderdetails(List<Orderdetails> orderdetails) {
+        this.orderdetails = orderdetails;
+    }
+
+    public long getOid() {
         return oid;
     }
 
-    public void setOid(int oid) {
+    public void setOid(long oid) {
         this.oid = oid;
     }
 

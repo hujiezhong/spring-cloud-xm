@@ -29,7 +29,9 @@ zuul:
     phone:
       path: /api/a/**
       serviceId: peanut-web-phone-feign
-    #peanut-web-phone-feign: /api/a/**
-    #api-b:
-    #  path: /api/b/**
-    #  serviceId: hello-spring-cloud-web-admin-feign
+    computer:
+      path: /api/b/**
+      serviceId: peanut-web-computer-feign
+    api-c:
+      path: /**
+      serviceId: page-service

@@ -1,0 +1,57 @@
+server:
+  port: 9030
+
+spring:
+  redis:
+    host: 106.13.73.229    #106.13.54.236
+    database: 0
+    lettuce:
+      shutdown-timeout: 500
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    port: 6379
+    password:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: page-service
+  thymeleaf:
+    cache: false #关闭缓存
+    prefix: classpath:/templates/
+    suffix: .html
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  datasource:
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql:///peanutmi
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+
+    jpa:
+      hibernate:
+        ddl-auto: none
+      show-sql: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8081/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}.${server.port}

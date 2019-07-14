@@ -8,6 +8,8 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
 
+
+    private static final long serialVersionUID = 3630016465854949179L;
     private int uid;
     private String username; //用户名 唯一 可以用来登陆
     private String password; //密码
@@ -18,8 +20,19 @@ public class User implements Serializable {
     private int level;       //用户级别 1：管理员  0：普通用户
     private String name;     //昵称 网名
     private int status;      //状态 1：在线  0：离线
+
     private String question; //密保
     private String answer;   //密保答案
+
+    private String touXiangPath;    //头像
+
+    public String getTouXiangPath() {
+        return touXiangPath;
+    }
+
+    public void setTouXiangPath(String touXiangPath) {
+        this.touXiangPath = touXiangPath;
+    }
 
     public int getUid() {
         return uid;

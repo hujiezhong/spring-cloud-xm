@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public class Collections implements Serializable {
 
+    private static final long serialVersionUID = -2350016033295897215L;
     private int colId;
     private Product prod;   //商品
     private User user;   //用户

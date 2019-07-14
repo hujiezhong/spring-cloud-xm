@@ -1,0 +1,133 @@
+﻿<html class="root61 jd_retina" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>我的京东-我的评价</title>
+    <link type="text/css" rel="stylesheet"
+          href="//misc.360buyimg.com/??jdf/1.0.0/unit/ui-base/5.0.0/ui-base.css,jdf/1.0.0/unit/shortcut/5.0.0/shortcut.css,jdf/1.0.0/unit/global-header/1.0.0/global-header.css,jdf/1.0.0/unit/myjd/5.0.0/myjd.css,jdf/1.0.0/unit/nav/2.0.0/nav.css,jdf/1.0.0/unit/shoppingcart/2.0.0/shoppingcart.css,jdf/1.0.0/unit/global-footer/5.0.0/global-footer.css,jdf/1.0.0/unit/service/5.0.0/service.css,user/myjd/lib/1.0.0/widget/global/global.css">
+    <script type="text/javascript">window.pageConfig = {compatible: true};</script>
+    <script type="text/javascript" src="//misc.360buyimg.com/jdf/1.0.0/unit/??base/5.0.0/base.js"></script>
+    <link type="text/css" rel="stylesheet"
+          href="//misc.360buyimg.com/user/myjd/comment/1.0.0/widget/??common/common.css,p-comment/p-comment.css,comment-form/comment-form.css,comment-form-service/comment-form-service.css"
+          source="widget">
+    <link rel="icon" href="//www.jd.com/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon">
+
+    <script type="text/javascript" async="" src="//nfa.jd.com/loadFa.js?aid=2_959_6296-2_959_6297"></script>
+    <link charset="utf-8" rel="stylesheet" href="https://misc.360buyimg.com/jdf/1.0.0/ui/dialog/1.0.0/dialog.css">
+    <link rel="stylesheet" href="http://localhost:8084/static/css/demo.css">
+    <link rel="stylesheet" href="http://localhost:8084/static/css/style.css">
+    <script type="text/javascript" src="http://localhost:8084/static/js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="http://localhost:8084/static/js/webuploader.min.js"></script>
+
+</head>
+<body style="overflow: hidden; ">
+
+
+<!-- globalShortcut begin-->
+<!--shortcut start-->
+<!-- main -->
+<div id="container">
+    <div class="w">
+        <div class="mycomment-detail">
+            <div class="detail-hd" id="o-info-orderinfo" oid="89354781120" payid="4" ot="22" shipmentid="70"
+                 venderid="4XfH6XPar60=" iscarshoporder="">
+                <div class="orderinfo">
+                    <h3 class="o-title">评价订单</h3>
+                    <div class="o-info">
+                        <span class="mr20">订单号：<a
+                                href="//details.jd.com/normal/item.action?orderid=89354781120&amp;PassKey=B36B0B010F67E4D7356CA5DD3884EB91"
+                                target="_blank" class="gray1" th:text="${orders.getOid()}">89354781120</a></span>
+                        <span th:text="${orders.getOorederTime()}">2019-03-10 10:56:58</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mycomment-form">
+
+                <!-- page -->
+                <div class="form-part1">
+
+                    <div class="f-cutline"></div>
+                    <div class="f-item f-goods product-42665436855" voucherstatus="0" catefi="1315" catese="1342"
+                         cateth="9730">
+                        <div class="fi-info">
+                            <div class="comment-goods">
+                                <div class="p-img"><a clstag="pageclick|keycount|fabupingjia_201608055|2"
+                                                      th:href="@{'http://localhost:9090/api/a/api/a/goumai/'+${orders.getOrderdetails()[0].getProduct().getPid()}}" target="_blank"><img
+                                        th:src="@{'http://localhost:8084'+${orders.getOrderdetails()[0].getProduct().getImage()}}"
+                                        alt=""></a></div>
+                                <div class="p-name"><a clstag="pageclick|keycount|fabupingjia_201608055|3"
+                                                       th:href="@{'http://localhost:9090/api/a/api/a/goumai/'+${orders.getOrderdetails()[0].getProduct().getPid()}}" target="_blank"
+                                                       th:text="${orders.getOrderdetails()[0].getProduct().getPname()+' '+orders.getOrderdetails()[0].getEdition().geteName()+' '}">
+                                    Lilanz/利郎休闲服夹克男春夏薄款运动服连帽夹克外套男18CKF0031A 白18CKF0031A 180</a></div>
+                                <div class="p-price"><strong th:text="${orders.getOrderdetails()[0].getEdition().geteShopPrice()}">¥299.00</strong></div>
+                                <div class="p-attr" th:text="${orders.getOrderdetails()[0].getEdition().geteName()}">白18CKF0031A 180</div>
+                            </div>
+                        </div>
+                        <div class="fi-operate">
+
+                            <div class="fop-item ">
+                                <div class="fop-label">评价晒单</div>
+                                <div class="fop-main">
+                                    <div class="f-textarea">
+                                        <textarea name="" id="text" placeholder="分享体验心得，给万千想买的人一个参考~"></textarea>
+                                        <div class="textarea-ext">还可输入500字</div>
+                                    </div>
+
+                                    <div class="m-imgshow f-imgshow" >
+
+                                        <iframe src="http://localhost:8084/text.html" width="647" height='42%' scrolling="no"></iframe>
+
+                                    </div>
+                                    <div>
+                                        <input type="radio" checked name="goodorbad" value="1">好评
+                                        <input type="radio" name="goodorbad" value="2">坏评
+                                    </div>
+                                </div>
+                                <div class="fop-tip"><i class="tip-icon"></i><em class="tip-text"></em></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- page -->
+
+
+                <div class="f-btnbox">
+                    <a href="javascript:void(0)" class="btn-submit">发表</a>
+                    <span class="f-checkbox">
+					</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!--footer end--><!-- globalFooter end-->
+<script type="text/javascript" >
+    $(function () {
+        $(".btn-submit").on("click",function () {
+            var goodorbad = $("input[name=goodorbad]").val();
+            var text = $("#text").val();
+            window.location = "http://localhost:9090/api/a/api/a/insertComment?pid=6&coContent="+text+"&goodOrBad="+goodorbad
+        });
+    })
+</script>
+<!-- /js 位置 -->
+
+<!--<script type="text/javascript">
+    seajs.use('//misc.360buyimg.com/user/myjd/comment/1.0.0/js/comment.js')
+</script>-->
+<!-- globalAnalysis begin-->
+<!--<script type="text/javascript" src="//wl.jd.com/wl.js"></script>&lt;!&ndash; globalAnalysis end&ndash;&gt;-->
+<script type="text/javascript" src="http://localhost:8084/static/js/demo.js"></script>
+<!--<script src="//payrisk.jd.com/js/td.js"></script>-->
+
+
+</body><!--
+<script src="https://gia.jd.com/y.html?v=0.27393609432160426&amp;o=club.jd.com/myJdcomments/orderVoucher.action"></script>
+<script src="https://gia.jd.com/r.html?v=0.3774686802047884&amp;d=7TJI7TcezeAewGAB6SAewQZsJgcuyQ6uil9C7T70zhPKF0ZXzgkPzdRB7T70zt74Fh7gztfHy0fevQNHJ0PXzGAewGAe6eAewd2PwHcPwj<PwH7ASfaBSNNZgPJRZ<Eiw4fff4NZRkoeT<fgA<FZ6Pp6SNwBRPRAS<4PwHcPw4wPwH7P7Tce7TZ37Tcefjp<RPRcR4JcRNbgfNajZ<bhS<E0Zfp0wjwjTBfFf496RHZfSN76ZBJyR<8jgfb0Z<7FfjROTfP1SAC5gAxARj9f6BZcfAokRkJ6f<FvR4ajR4CwRNb7SjR77Tce7T7L7TceFGAewGAB6SAewH<DwTaDFLwDiQRbZHcliTFQiQfHOg7QwHRQOLwBO0A*7Tce7TJ</"></script>
+-->
+
+</html>

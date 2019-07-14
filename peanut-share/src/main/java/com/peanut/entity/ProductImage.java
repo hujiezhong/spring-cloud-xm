@@ -8,8 +8,9 @@ import java.io.Serializable;
  */
 public class ProductImage implements Serializable {
 
+    private static final long serialVersionUID = 4348790559382578126L;
     private int piId;
-    private Product prod;   //商品
+    private Product product;   //商品
     private String fileName;  //商品图片地址
     private int pflag;   //暂时不用
     private String color;   //颜色  没有颜色为null
@@ -23,11 +24,11 @@ public class ProductImage implements Serializable {
     }
 
     public Product getProd() {
-        return prod;
+        return product;
     }
 
-    public void setProd(Product prod) {
-        this.prod = prod;
+    public void setProd(Product product) {
+        this.product = product;
     }
 
     public String getFileName() {

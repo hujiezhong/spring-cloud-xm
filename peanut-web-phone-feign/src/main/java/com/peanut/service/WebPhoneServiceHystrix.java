@@ -1,13 +1,14 @@
 package com.peanut.service;
 
-import com.peanut.entity.Category;
-import com.peanut.entity.Comment;
-import com.peanut.entity.Product;
+import com.github.pagehelper.Page;
+import com.peanut.entity.*;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class WebPhoneServiceHystrix implements FallbackFactory<WebPhoneService> {
@@ -61,6 +62,76 @@ public class WebPhoneServiceHystrix implements FallbackFactory<WebPhoneService> 
 
             @Override
             public List<Comment> comment(Integer pid, Integer goodorbad, Integer size) {
+                return null;
+            }
+
+            @Override
+            public List<Product> productByLike(String pname, Integer size) {
+                return null;
+            }
+
+            @Override
+            public List<ProductImage> selectImageProduct(String color, Integer cid, Integer pid, Integer size) {
+                return null;
+            }
+
+            @Override
+            public Product selectProductImageEdition(Integer pid) {
+                return null;
+            }
+
+            @Override
+            public int inserLove(Integer pid, Integer uid) {
+                return 0;
+            }
+
+            @Override
+            public int deleteLove(Integer pid, Integer uid) {
+                return 0;
+            }
+
+            @Override
+            public int isLove(Integer pid, Integer uid) {
+                return 0;
+            }
+
+            @Override
+            public List<Comment> commentAndReply(Integer pid, Integer goodorbad, Integer pageNum) {
+                return null;
+            }
+
+            @Override
+            public int insertComment(Comment com) {
+                return 0;
+            }
+
+            @Override
+            public int selectCount(Integer pid, Integer goodorbad) {
+                return 0;
+            }
+
+            @Override
+            public int insertCommentImage(CommentImage ci) {
+                return 0;
+            }
+
+            @Override
+            public Orders ordersByOname(Integer uid, long oid, Integer pid) {
+                return null;
+            }
+
+            @Override
+            public List<Reply> replyByCoid(Integer coId) {
+                return null;
+            }
+
+            @Override
+            public int insertReply(Reply reply) {
+                return 0;
+            }
+
+            @Override
+            public Comment commentByCoId(Integer coId) {
                 return null;
             }
         };

@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public class Rate implements Serializable {
 
+    private static final long serialVersionUID = -1383820776628816533L;
     private int rateId;
     private int ratio;  //折率  1：一折 2：二折 10:不打折  这样
     private String rateName;  //活动名称

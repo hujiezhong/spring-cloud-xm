@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>wangEditor demo</title>
+</head>
+<body>
+<div id="editor">
+    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+</div>
+<button id="btn1">提交</button>
+
+<!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+<script type="text/javascript" src="http://localhost:8084/static/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="http://localhost:8084/static/js/wangEditor.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    //editor.customConfig.uploadImgShowBase64 = true
+    editor.customConfig.debug = true;
+
+    editor.customConfig.uploadFileName = 'myFile';
+    editor.customConfig.uploadImgServer = 'http://localhost:9090/api/a/api/a/picture'
+    editor.customConfig.uploadImgMaxLength = 6
+    // 或者 var editor = new E( document.getElementById('editor') )
+
+/*    editor.customConfig.customUploadImg = function (files, insert) {
+        // files 是 input 中选中的文件列表
+        // insert 是获取图片 url 后，插入到编辑器的方法
+
+        // 上传代码返回结果之后，将图片插入到编辑器中
+        insert("http://localhost:8084/")
+    }*/
+
+    editor.customConfig.uploadImgHooks = {
+        before: function (xhr, editor, files) {
+
+        },
+        success: function (xhr, editor, result) {
+            console.log("上传成功");
+        },
+        fail: function (xhr, editor, result) {
+            console.log("上传失败,原因是" + result);
+        },
+        error: function (xhr, editor) {
+            console.log("上传出错");
+        },
+        timeout: function (xhr, editor) {
+            console.log("上传超时");
+        },
+        customInsert: function (insertImg, result, editor) {
+            // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+            // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+
+            // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+            var url = result.url
+            for(var i=0;i<url.length;i++){
+                insertImg('http://localhost:8084'+url[i])
+            }
+
+            // result 必须是一个 JSON 格式字符串！！！否则报错
+        }
+    }
+    document.getElementById('btn1').addEventListener('click', function () {
+        // 读取 html
+        var html = editor.txt.html();
+        var text = editor.txt.text();
+        /*window.location = "http://localhost:9090/api/a/api/a/insertComment?pid=6&coContent="+text+"&HTML="+html+"&goodOrBad=1";*/
+        $.post("http://localhost:9090/api/a/api/a/insertComment",{pid:6,coContent:text,HTML:html,goodOrBad:1},function (data) {
+            var coid = Number(data);
+            window.location = "http://localhost:9090/api/a/api/a/text?coId="+coid
+        });
+    }, false)
+
+    editor.create()
+</script>
+</body>
+</html>

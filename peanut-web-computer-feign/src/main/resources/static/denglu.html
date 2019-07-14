@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>花生米-花生米登录界面</title>
+    <link rel="stylesheet" href="http://localhost:8085/static/css/denglu.css">
+    <link rel="stylesheet" href="http://localhost:8085/static/css/denglu2.css">
+    <link rel="stylesheet" href="http://localhost:8085/static/css/denglu4.css">
+    <script type="text/javascript" src="http://localhost:8085/static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#loginuser").click(function () {
+                $("#denglu4").show();
+                $(".d2a").hide();
+                $("#a").hide();
+            });
+            $("#loginyan").click(function () {
+                $("#denglu4").hide();
+                $(".d2a").hide();
+                $("#a").show();
+            });
+
+            $("#zhang").click(function () {
+                $("#denglu4").show();
+                $(".d2a").hide();
+                $("#a").hide();
+            });
+
+            $("#kuaisu").click(function () {
+                $("#denglu4").hide();
+                $(".d2a").show();
+                $("#a").hide();
+            });
+            $("#yzm").click(function () {
+                var phone=$("#phone").val();
+                $.get("http://localhost:9090/api/b/api/b/yz?smsMob="+phone,function (data) {
+                alert(data);
+                    if(data=="N")
+                    {
+                        alert("改用户没有注册，请确认你的号码");
+                        window.location = "http://localhost:9090/api/b/api/b/login";
+                    }else if(data=="Y")
+                    {
+                        alert("验证码已经成功发送，请注意查收");
+                    }
+                });
+            });
+
+            $("#denglu").click(function () {
+                alert(123123);
+                var phone=$("#phone").val();
+                var ma=$("#ma").val();
+                alert(phone+""+ma);
+                $.get("http://localhost:9090/api/b/api/b/deng?smsMob="+phone+"&yanz="+ma,function (data) {
+                    alert(data);
+                    if(data=="N")
+                    {
+                        alert("验证码错误，请重新选择登录方式");
+                        window.location = "http://localhost:9090/api/b/api/b/login";
+                    }else if(data=="Y")
+                    {
+                        alert("登录成功");
+                        window.location = "http://localhost:9090/api/b/api/b/in";
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+<video autoplay loop style="width:100%">
+    <source src="http://localhost:8085/static/video/小米9.mp4">
+</video>
+<div id="zong">
+    <div id="beijin"></div>
+    <div id="denglum">
+        <div id="xz">
+            <a href="http://localhost:9090/api/a/api/a/index2"><img src="http://localhost:8085/static/images/denglu2.png"/></a>
+            <p><a href="#" id="loginuser">用户登录</a></p>
+            <p><a href="#" id="loginyan">验证码登录</a></p>
+        </div>
+       <!-- //denglu4-->
+        <div id="denglu4" style="margin:auto;  height:300px; width:460px; frameborder:0;display: none">
+            <p></p>
+            <p>推荐使用<a href="#" id="kuaisu">快速安全登录</a>，防止盗号。</p>
+            <form action="http://localhost:9090/api/b/api/b/lu" method="post">
+                <ul>
+                    <li><input type="text" name="username" placeholder="支持用户名" required/></li>
+                    <li><input type="password" name="password" placeholder="密码" required/></li>
+                    <li><input type="submit" name="a" value="登录"/></li>
+                </ul>
+            </form>
+        </div>
+       <!-- //denglu2-->
+        <div class="d2a" style="margin:auto; height:300px; width:460px; frameborder:0;display: block">
+            <p></p>
+            <p>请使用<a href="https://www.mi.com/appdownload/" target="_blank">花生米商城APP</a>扫描二维码，<br/>
+                或<a href="#" id="zhang">账号密码登录</a></p>
+            <img id="d2erm" src="http://localhost:8085/static/images/erweima.jpg"/>
+            <img id="d2b" src="http://localhost:8085/static/images/denglu.png"/>
+        </div>
+       <!-- denglu3-->
+        <div id="a" style="margin:auto; height:300px; width:460px; frameborder:0;display: none; margin: auto">
+            <p ></p>
+            <ul id="d3ul">
+                <li><input type="text" id="phone" name="c" placeholder="输入手机号" required/></li>
+                <li id="zw">
+                    <input type="password" id="ma" name="b" placeholder="请输入验证码" required/>
+                    <input type="button" id="yzm" name="yzm" value="获取验证码"/>
+                </li>
+                <li><input type="submit" id="denglu" name="a" value="登录"/></li>
+            </ul>
+        </div>
+        <!--<iframe src="http://localhost:8085/denglu4.html" name="dl"  height="300px" width="560px" frameborder="0"/>-->
+</div>
+</div>
+</body>
+</html>
